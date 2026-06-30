@@ -34,6 +34,26 @@ if ('IntersectionObserver' in window && revealEls.length) {
   revealEls.forEach(el => el.classList.add('is-visible'));
 }
 
+// ============ Hero rotating words ============
+const ROTATING_WORDS = ['Observe', 'Design', 'Prototype', 'Iterate', 'Impact'];
+const rotatorEl = document.getElementById('rotatorWord');
+
+if (rotatorEl) {
+  let i = 0;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!reduceMotion) {
+    setInterval(() => {
+      rotatorEl.classList.add('is-fading');
+      setTimeout(() => {
+        i = (i + 1) % ROTATING_WORDS.length;
+        rotatorEl.textContent = ROTATING_WORDS[i];
+        rotatorEl.classList.remove('is-fading');
+      }, 300);
+    }, 2200);
+  }
+}
+
 // ============ Footer year ============
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();

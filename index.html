@@ -48,7 +48,7 @@
 
   <!-- ============ HERO ============ -->
   <section class="hero" id="hero">
-    <div class="hero-inner">
+    <div class="hero-inner hero-inner--single">
       <div class="hero-copy reveal">
         <p class="eyebrow"><span class="eyebrow-line"></span>IB MYP Design Facilitator &middot; Makerspace Educator &middot; Industrial Designer</p>
         <h1 class="hero-title">Designing Meaningful Learning <em>Through Innovation.</em></h1>
@@ -61,20 +61,6 @@
         <div class="hero-actions">
           <a href="#journey" class="btn btn-primary">Explore My Journey</a>
           <a href="#case-studies" class="btn btn-ghost">View My Work</a>
-        </div>
-      </div>
-
-      <!-- Signature element: Design Philosophy cycle -->
-      <div class="hero-figure reveal">
-        <div class="cycle-card">
-          <p class="cycle-card-label">Design Philosophy</p>
-          <ol class="cycle-list">
-            <li><span class="cycle-n">01</span>Observe</li>
-            <li><span class="cycle-n">02</span>Design</li>
-            <li><span class="cycle-n">03</span>Prototype</li>
-            <li><span class="cycle-n">04</span>Iterate</li>
-            <li><span class="cycle-n">05</span>Impact</li>
-          </ol>
         </div>
       </div>
     </div>
@@ -106,52 +92,45 @@
         <h2>From the workshop floor to the design studio.</h2>
       </div>
 
-      <ol class="timeline">
-        <li class="timeline-item reveal">
-          <div class="tl-marker"><span>04</span></div>
-          <div class="tl-content">
-            <div class="tl-top">
-              <h3>Makerspace &amp; Design Facilitator — IB MYP Design</h3>
-              <span class="tl-date">Jul 2025 — Present</span>
-            </div>
-            <p class="tl-org">The Shriram Academy, Hyderabad</p>
-            <p>Facilitating MYP Digital &amp; Product Design units through the IB Design Cycle, leading makerspace sessions across Robotics, 3D Design, Coding and Prototyping, and shaping curriculum and assessment for the programme.</p>
-          </div>
-        </li>
-        <li class="timeline-item reveal">
-          <div class="tl-marker"><span>03</span></div>
-          <div class="tl-content">
-            <div class="tl-top">
-              <h3>Education Program Manager</h3>
-              <span class="tl-date">Aug 2023 — Jul 2025</span>
-            </div>
-            <p class="tl-org">Creya Learning and Research, Hyderabad</p>
-            <p>Led STEM program implementation across 10+ schools in Telangana &amp; Andhra Pradesh, training educators and mentoring students into national hackathons including the i3R2 Make-a-thon at IIT Chennai.</p>
-          </div>
-        </li>
-        <li class="timeline-item reveal">
-          <div class="tl-marker"><span>02</span></div>
-          <div class="tl-content">
-            <div class="tl-top">
-              <h3>Design Engineer</h3>
-              <span class="tl-date">Mar — Jul 2023</span>
-            </div>
-            <p class="tl-org">Simpliforge Creations, Siddipet</p>
-            <p>Designed architectural structures for concrete 3D printing using SolidWorks and Fusion 360, and produced 2D drawings in AutoCAD for manufactured models.</p>
-          </div>
-        </li>
-        <li class="timeline-item reveal">
-          <div class="tl-marker"><span>01</span></div>
-          <div class="tl-content">
-            <div class="tl-top">
-              <h3>Robotics Mentor Intern</h3>
-              <span class="tl-date">Dec 2022 — Mar 2023</span>
-            </div>
-            <p class="tl-org">Evobi Automations Ltd, Bangalore — Atal Tinkering Lab</p>
-            <p>The starting point: teaching Robotics and IoT in schools, and discovering that I loved the teaching as much as the building.</p>
-          </div>
-        </li>
-      </ol>
+      <div class="dc-grid reveal">
+        <div class="dc-tabs" id="journeyTabs" role="tablist" aria-label="Career timeline">
+          <div class="dc-line" aria-hidden="true"></div>
+          <div class="dc-line-fill" id="journeyLineFill" aria-hidden="true"></div>
+          <div class="dc-arrow" id="journeyArrow" aria-hidden="true">&#9660;</div>
+          <button class="dc-tab is-active" type="button" role="tab" aria-selected="true" data-role="shriram">
+            <span class="dc-tab-badge">04</span>
+            <span class="dc-tab-text">
+              <span class="dc-tab-phase">Jul 2025 — Present</span>
+              <span class="dc-tab-title">Makerspace &amp; Design Facilitator</span>
+            </span>
+          </button>
+          <button class="dc-tab" type="button" role="tab" aria-selected="false" data-role="creya">
+            <span class="dc-tab-badge">03</span>
+            <span class="dc-tab-text">
+              <span class="dc-tab-phase">Aug 2023 — Jul 2025</span>
+              <span class="dc-tab-title">Education Program Manager</span>
+            </span>
+          </button>
+          <button class="dc-tab" type="button" role="tab" aria-selected="false" data-role="simpliforge">
+            <span class="dc-tab-badge">02</span>
+            <span class="dc-tab-text">
+              <span class="dc-tab-phase">Mar — Jul 2023</span>
+              <span class="dc-tab-title">Design Engineer</span>
+            </span>
+          </button>
+          <button class="dc-tab" type="button" role="tab" aria-selected="false" data-role="evobi">
+            <span class="dc-tab-badge">01</span>
+            <span class="dc-tab-text">
+              <span class="dc-tab-phase">Dec 2022 — Mar 2023</span>
+              <span class="dc-tab-title">Robotics Mentor Intern</span>
+            </span>
+          </button>
+        </div>
+
+        <div class="dc-panel" id="journeyPanel">
+          <!-- Filled in by js/main.js (initJourney) -->
+        </div>
+      </div>
     </div>
   </section>
 
@@ -163,31 +142,77 @@
         <h2>Observe. Design.<br>Prototype. Iterate. Impact.</h2>
       </div>
 
-      <div class="philosophy-grid reveal">
-        <div class="philosophy-step">
+      <div class="philosophy-grid">
+        <div class="philosophy-step reveal">
           <span class="philosophy-n">01</span>
           <h3>Observe</h3>
           <p>Start with empathy. Understand the user, the context, and the real problem before reaching for a solution.</p>
         </div>
-        <div class="philosophy-step">
+        <div class="philosophy-step reveal">
           <span class="philosophy-n">02</span>
           <h3>Design</h3>
           <p>Generate ideas freely, then narrow with intent — sketches, criteria, and constraints sharpen the concept.</p>
         </div>
-        <div class="philosophy-step">
+        <div class="philosophy-step reveal">
           <span class="philosophy-n">03</span>
           <h3>Prototype</h3>
           <p>Make it real, even roughly. A model you can hold teaches more than a page of theory ever will.</p>
         </div>
-        <div class="philosophy-step">
+        <div class="philosophy-step reveal">
           <span class="philosophy-n">04</span>
           <h3>Iterate</h3>
           <p>Test, reflect, and revise. Failure is data — an essential step in the process, not the end of it.</p>
         </div>
-        <div class="philosophy-step">
+        <div class="philosophy-step reveal">
           <span class="philosophy-n">05</span>
           <h3>Impact</h3>
           <p>Measure what changed — for the user, the learner, or the classroom. That's the point of the work.</p>
+        </div>
+      </div>
+
+      <div class="philosophy-sub reveal" id="ib-myp-in-action">
+        <p class="kicker">IB MYP Design in Action</p>
+        <h3 class="dc-title">Click through the four assessment criteria.</h3>
+        <p class="dc-sub">The same Observe → Impact philosophy, mapped to how IB MYP Design is actually assessed in my classroom — and the sequence each project moves through.</p>
+      </div>
+
+      <div class="dc-grid reveal">
+        <div class="dc-tabs" id="dcTabs" role="tablist" aria-label="IB MYP Design criteria">
+          <div class="dc-line" aria-hidden="true"></div>
+          <div class="dc-line-fill" id="dcLineFill" aria-hidden="true"></div>
+          <div class="dc-arrow" id="dcArrow" aria-hidden="true">&#9660;</div>
+          <button class="dc-tab is-active" type="button" role="tab" aria-selected="true" data-criterion="A">
+            <span class="dc-tab-badge">A</span>
+            <span class="dc-tab-text">
+              <span class="dc-tab-phase">Phase 01</span>
+              <span class="dc-tab-title">Inquiry &amp; Analysis</span>
+            </span>
+          </button>
+          <button class="dc-tab" type="button" role="tab" aria-selected="false" data-criterion="B">
+            <span class="dc-tab-badge">B</span>
+            <span class="dc-tab-text">
+              <span class="dc-tab-phase">Phase 02</span>
+              <span class="dc-tab-title">Developing Ideas</span>
+            </span>
+          </button>
+          <button class="dc-tab" type="button" role="tab" aria-selected="false" data-criterion="C">
+            <span class="dc-tab-badge">C</span>
+            <span class="dc-tab-text">
+              <span class="dc-tab-phase">Phase 03</span>
+              <span class="dc-tab-title">Creating the Solution</span>
+            </span>
+          </button>
+          <button class="dc-tab" type="button" role="tab" aria-selected="false" data-criterion="D">
+            <span class="dc-tab-badge">D</span>
+            <span class="dc-tab-text">
+              <span class="dc-tab-phase">Phase 04</span>
+              <span class="dc-tab-title">Evaluating</span>
+            </span>
+          </button>
+        </div>
+
+        <div class="dc-panel" id="dcPanel">
+          <!-- Filled in by js/main.js (initDesignCycle) -->
         </div>
       </div>
     </div>
@@ -248,19 +273,19 @@
         <p>I'm also building <strong>Experion Robotics Academy</strong>, my own venture for lab setup, curriculum and trainer deployment in partner schools — the same hands-on, Design-Thinking-first approach, on a second track.</p>
 
         <div class="teach-list">
-          <div class="teach-item">
+          <div class="teach-item reveal">
             <h3>Curriculum &amp; Assessment</h3>
             <p>MYP Design curriculum review and programme mapping across Middle Years grades; formative and summative assessment aligned to MYP Design criteria.</p>
           </div>
-          <div class="teach-item">
+          <div class="teach-item reveal">
             <h3>Inquiry-Based Practice</h3>
             <p>ATL Skills, Learner Profile attributes, Key Concepts, Related Concepts and Global Contexts embedded into daily classroom routines.</p>
           </div>
-          <div class="teach-item">
+          <div class="teach-item reveal">
             <h3>Makerspace Facilitation</h3>
             <p>Robotics, 3D Design, Coding and Prototyping sessions aligned to Design Thinking and interdisciplinary learning goals.</p>
           </div>
-          <div class="teach-item">
+          <div class="teach-item reveal">
             <h3>Reflective Documentation</h3>
             <p>Guiding learners to document and reflect on their design process through structured journals, in collaboration with subject teachers.</p>
           </div>
@@ -381,6 +406,15 @@
     <a href="#top">Back to top ↑</a>
   </div>
 </footer>
+
+<!-- ============ SCROLL PROGRESS INDICATOR ============ -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true">
+  <svg viewBox="0 0 56 56" width="56" height="56">
+    <circle class="sp-track" cx="28" cy="28" r="24"></circle>
+    <circle class="sp-fill" id="spFill" cx="28" cy="28" r="24"></circle>
+  </svg>
+  <span class="sp-icon" id="spIcon">&#8595;</span>
+</div>
 
 <script src="js/main.js"></script>
 </body>

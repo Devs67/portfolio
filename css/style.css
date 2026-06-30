@@ -108,6 +108,8 @@ main, .site-header, .site-footer{ position:relative; z-index:1; }
   background:var(--clay); transform:scaleX(0); transform-origin:left; transition:transform .25s ease;
 }
 .main-nav a:hover::after{ transform:scaleX(1); }
+.main-nav a.is-active{ color:var(--clay-dim); }
+.main-nav a.is-active::after{ transform:scaleX(1); }
 
 .nav-cta{
   font-family:var(--font-mono); font-size:12.5px; border:1px solid var(--ink);
@@ -124,12 +126,15 @@ main, .site-header, .site-footer{ position:relative; z-index:1; }
   display:inline-flex; align-items:center; justify-content:center;
   font-family:var(--font-mono); font-size:13.5px; font-weight:500;
   padding:13px 26px; border-radius:var(--radius); border:1px solid transparent; cursor:pointer;
-  transition:transform .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
+  transition:transform .3s cubic-bezier(0.16,1,0.3,1), background .25s ease, color .25s ease,
+             border-color .25s ease, box-shadow .3s cubic-bezier(0.16,1,0.3,1);
 }
 .btn-primary{ background:var(--sage); color:var(--white); }
-.btn-primary:hover{ background:var(--clay); transform:translateY(-2px); }
+.btn-primary:hover{ background:var(--clay); transform:translateY(-3px); box-shadow:0 10px 22px rgba(166,90,56,0.25); }
+.btn-primary:active{ transform:translateY(-1px); }
 .btn-ghost{ border-color:var(--ink); color:var(--ink); }
-.btn-ghost:hover{ background:var(--ink); color:var(--paper); transform:translateY(-2px); }
+.btn-ghost:hover{ background:var(--ink); color:var(--paper); transform:translateY(-3px); box-shadow:0 10px 22px rgba(29,34,48,0.18); }
+.btn-ghost:active{ transform:translateY(-1px); }
 .btn-block{ width:100%; margin-top:18px; }
 
 /* ---------- hero ---------- */
@@ -161,25 +166,89 @@ main, .site-header, .site-footer{ position:relative; z-index:1; }
 .rotator-word.is-fading{ opacity:0; transform:translateY(6px); }
 
 .hero-actions{ display:flex; gap:14px; margin-top:34px; flex-wrap:wrap; }
+.hero-inner--single{ grid-template-columns:1fr; max-width:760px; }
 
-/* hero figure: design philosophy cycle card */
-.hero-figure{ display:flex; }
-.cycle-card{ border:1px solid var(--line); background:var(--white); border-radius:var(--radius); width:100%; }
-.cycle-card-label{
-  font-family:var(--font-mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
-  color:var(--white); background:var(--sage); padding:14px 22px; margin:0;
+/* ---------- interactive IB MYP Design Cycle ---------- */
+.dc-section{ background:var(--paper-2); }
+.dc-title{ margin-top:8px; font-size:clamp(28px,3.6vw,40px); max-width:640px; }
+.dc-sub{ margin-top:14px; max-width:620px; font-size:15.5px; color:var(--steel); }
+
+.dc-grid{ margin-top:44px; display:grid; grid-template-columns:0.85fr 1.15fr; gap:24px; align-items:start; }
+
+.dc-tabs{ position:relative; display:flex; flex-direction:column; gap:10px; }
+.dc-line{ position:absolute; width:2px; background:var(--line); z-index:0; transition:top .3s ease, height .3s ease; }
+.dc-line-fill{ position:absolute; width:2px; background:var(--clay); z-index:0; transition:top .45s cubic-bezier(0.16,1,0.3,1), height .45s cubic-bezier(0.16,1,0.3,1); }
+.dc-arrow{
+  position:absolute; width:20px; height:20px; margin-left:-10px; margin-top:-10px;
+  border-radius:50%; background:var(--clay); color:var(--white); z-index:2;
+  display:flex; align-items:center; justify-content:center; font-size:10px; line-height:1;
+  transition:top .45s cubic-bezier(0.16,1,0.3,1), left .3s ease;
+  animation:dc-arrow-pulse 1.8s ease-in-out infinite;
 }
-.cycle-list{ padding:6px 0; }
-.cycle-list li{
-  display:flex; align-items:center; gap:16px; padding:13px 22px;
-  font-family:var(--font-display); font-size:17px; color:var(--ink);
-  border-bottom:1px solid var(--line);
+@keyframes dc-arrow-pulse{
+  0%,100%{ box-shadow:0 0 0 0 rgba(166,90,56,0.28); }
+  50%{ box-shadow:0 0 0 7px rgba(166,90,56,0); }
 }
-.cycle-list li:last-child{ border-bottom:none; }
-.cycle-n{ font-family:var(--font-mono); font-size:12px; color:var(--clay); }
+@media (prefers-reduced-motion: reduce){ .dc-arrow{ animation:none; } }
+
+.dc-tabs{ display:flex; flex-direction:column; gap:10px; }
+.dc-tab{
+  position:relative; z-index:1;
+  display:flex; align-items:center; gap:16px; width:100%; text-align:left;
+  padding:18px 20px; border-radius:var(--radius); border:1px solid var(--line);
+  background:var(--white); cursor:pointer;
+  transition:background .35s cubic-bezier(0.16,1,0.3,1), border-color .35s ease, transform .3s cubic-bezier(0.16,1,0.3,1);
+  font-family:inherit;
+}
+.dc-tab:hover{ transform:translateX(3px); border-color:var(--clay); }
+.dc-tab-badge{
+  flex:none; width:36px; height:36px; border-radius:50%; background:var(--paper-2);
+  color:var(--ink); font-family:var(--font-mono); font-size:14px; font-weight:500;
+  display:flex; align-items:center; justify-content:center;
+  transition:background .35s ease, color .35s ease;
+}
+.dc-tab-text{ display:flex; flex-direction:column; gap:3px; }
+.dc-tab-phase{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--steel); }
+.dc-tab-title{ font-family:var(--font-display); font-size:16.5px; font-weight:500; color:var(--ink); }
+
+.dc-tab.is-active{ background:var(--sage); border-color:var(--sage); }
+.dc-tab.is-active .dc-tab-badge{ background:var(--clay); color:var(--white); }
+.dc-tab.is-active .dc-tab-phase{ color:#B7C2BC; }
+.dc-tab.is-active .dc-tab-title{ color:var(--white); }
+
+.dc-panel{
+  border:1px solid var(--line); background:var(--white); border-radius:var(--radius);
+  padding:34px 36px; min-height:340px;
+  animation:dc-fade .4s cubic-bezier(0.16,1,0.3,1);
+}
+@keyframes dc-fade{ from{ opacity:0; transform:translateY(8px);} to{ opacity:1; transform:none; } }
+
+.dc-panel-top{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px; }
+.dc-panel-title{ font-family:var(--font-display); font-size:23px; font-weight:500; color:var(--ink); max-width:420px; }
+.dc-panel-badge{
+  font-family:var(--font-mono); font-size:11px; letter-spacing:0.06em; text-transform:uppercase;
+  color:var(--clay-dim); background:var(--paper-2); border-radius:20px; padding:7px 14px; white-space:nowrap;
+}
+.dc-panel-desc{ margin-top:18px; padding-top:18px; border-top:1px solid var(--line); font-size:15px; line-height:1.7; color:var(--ink); max-width:560px; }
+
+.dc-panel-label{
+  margin-top:24px; font-family:var(--font-mono); font-size:11px; letter-spacing:0.1em;
+  text-transform:uppercase; color:var(--steel);
+}
+.dc-checklist{ margin-top:14px; display:grid; grid-template-columns:1fr 1fr; gap:12px 24px; }
+.dc-checklist li{ display:flex; align-items:center; gap:10px; font-size:14px; color:var(--ink); }
+.dc-check-icon{
+  flex:none; width:18px; height:18px; border-radius:50%; background:var(--sage); color:var(--white);
+  display:flex; align-items:center; justify-content:center; font-size:11px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .dc-panel{ animation:none; }
+}
 
 .dim-divider{
   max-width:var(--maxw); margin:72px auto 0; padding-inline:32px;
+
   display:flex; align-items:center; gap:14px; font-family:var(--font-mono); font-size:11px;
   color:var(--steel-soft); letter-spacing:0.1em; text-transform:uppercase;
 }
@@ -203,7 +272,9 @@ main, .site-header, .site-footer{ position:relative; z-index:1; }
   flex:none; width:46px; height:46px; border-radius:50%; background:var(--paper-2);
   border:1px solid var(--sage); display:flex; align-items:center; justify-content:center;
   font-family:var(--font-mono); font-size:12px; font-weight:500; color:var(--sage); z-index:1;
+  transition:background .3s ease, color .3s ease;
 }
+.timeline-item:hover .tl-marker{ background:var(--sage); color:var(--white); }
 .tl-top{ display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap; }
 .tl-content h3{ font-size:19px; }
 .tl-date{ font-family:var(--font-mono); font-size:12px; color:var(--clay-dim); white-space:nowrap; }
@@ -215,7 +286,8 @@ main, .site-header, .site-footer{ position:relative; z-index:1; }
   margin-top:52px; display:grid; grid-template-columns:repeat(5,1fr); gap:1px;
   background:var(--line); border:1px solid var(--line);
 }
-.philosophy-step{ background:var(--paper); padding:28px 22px; }
+.philosophy-step{ background:var(--paper); padding:28px 22px; transition:background .3s ease; }
+.philosophy-step:hover{ background:var(--white); }
 .philosophy-n{ font-family:var(--font-mono); font-size:12px; color:var(--clay); }
 .philosophy-step h3{ margin-top:10px; font-size:18px; }
 .philosophy-step p{ margin-top:10px; font-size:13.5px; color:var(--steel); }
@@ -223,10 +295,10 @@ main, .site-header, .site-footer{ position:relative; z-index:1; }
 /* ---------- case studies ---------- */
 .project-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; margin-top:52px; }
 .project-card{
-  border:1px solid var(--line); background:var(--white); border-radius:var(--radius);
-  transition:transform .2s ease, box-shadow .2s ease; position:relative;
+  border:1px solid var(--line); background:var(--white); border-radius:var(--radius); position:relative;
+  transition:transform .4s cubic-bezier(0.16,1,0.3,1), box-shadow .4s cubic-bezier(0.16,1,0.3,1), border-color .4s ease;
 }
-.project-card:hover{ transform:translateY(-4px); box-shadow:0 14px 30px rgba(29,34,48,0.08); }
+.project-card:hover{ transform:translateY(-6px); box-shadow:0 18px 34px rgba(29,34,48,0.1); border-color:var(--clay); }
 .card-body{ padding:24px; }
 .card-eyebrow{ font-family:var(--font-mono); font-size:11px; color:var(--steel); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.05em; }
 .card-body h3{ font-size:18px; margin-bottom:10px; }
@@ -290,5 +362,34 @@ main, .site-header, .site-footer{ position:relative; z-index:1; }
 .footer-mid{ color:#7C8A82; }
 
 /* ---------- reveal-on-scroll ---------- */
-.reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+.reveal{
+  opacity:0; transform:translateY(26px) scale(0.99);
+  transition:opacity .8s cubic-bezier(0.16,1,0.3,1), transform .8s cubic-bezier(0.16,1,0.3,1);
+}
 .reveal.is-visible{ opacity:1; transform:none; }
+
+/* ---------- philosophy sub-section (IB MYP Design in Action) ---------- */
+.philosophy-sub{ margin-top:64px; padding-top:48px; border-top:1px solid var(--line); max-width:680px; }
+.philosophy-sub h3{ margin-top:10px; font-size:clamp(24px,2.8vw,30px); }
+.philosophy-sub-note, .dc-sub{ margin-top:12px; }
+
+/* ---------- scroll progress indicator ---------- */
+.scroll-progress{
+  position:fixed; left:22px; bottom:22px; z-index:60;
+  width:56px; height:56px; display:flex; align-items:center; justify-content:center;
+}
+.scroll-progress svg{ position:absolute; inset:0; transform:rotate(-90deg); }
+.sp-track{ fill:none; stroke:var(--line); stroke-width:3; }
+.sp-fill{
+  fill:none; stroke:var(--clay); stroke-width:3; stroke-linecap:round;
+  stroke-dasharray:150.8; stroke-dashoffset:150.8;
+  transition:stroke-dashoffset .15s ease;
+}
+.sp-icon{
+  position:relative; font-size:14px; color:var(--ink); transition:transform .3s ease, color .3s ease;
+}
+.scroll-progress.is-complete .sp-icon{ color:var(--clay); }
+@media (max-width:720px){
+  .scroll-progress{ width:44px; height:44px; left:14px; bottom:14px; }
+  .scroll-progress svg{ width:44px; height:44px; }
+}

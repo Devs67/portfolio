@@ -1,269 +1,369 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Devendhar Bachhu — Education Program Manager</title>
+<meta name="description" content="Devendhar Bachhu — Education Program Manager building hands-on STEM, Robotics & Design Thinking programs across schools in Telangana & Andhra Pradesh.">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <title>Devendhar Bachhu | Designing Meaningful Learning</title>
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@300;500;600;700;800&display=swap"
-        rel="stylesheet">
-
-    <!-- CSS -->
-
-    <link rel="stylesheet" href="css/style.css">
-
-    <link rel="stylesheet" href="css/responsive.css">
-
+<link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
-    <!-- ===========================
-            Navigation
-    ============================ -->
+<!-- ============ BACKGROUND GRID ============ -->
+<div class="blueprint-grid" aria-hidden="true"></div>
 
-    <header>
+<!-- ============ NAV ============ -->
+<header class="site-header" id="top">
+  <div class="header-inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark">DB</span>
+      <span class="brand-name">Devendhar&nbsp;Bachhu</span>
+    </a>
 
-        <nav class="navbar">
+    <nav class="main-nav" id="mainNav">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
 
-            <div class="logo">
+    <a class="nav-cta" href="mailto:bdevender67@gmail.com">Get in touch</a>
 
-                DB
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
 
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span class="eyebrow-line"></span>Education Program Manager &middot; Mechanical Engineer</p>
+        <h1 class="hero-title">Hands-on STEM,<br><em>built&nbsp;classroom&nbsp;by&nbsp;classroom.</em></h1>
+        <p class="hero-sub">I design and run Robotics, IoT, Coding and Design&nbsp;Thinking programs across schools in Telangana &amp; Andhra Pradesh — training teachers, mentoring students into national hackathons, and building the curriculum myself, from CAD models to classroom kits.</p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">View the work</a>
+          <a href="Devendhar_Bachhu_Resume.pdf" class="btn btn-ghost" download>Download résumé</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-num">10+</span>
+            <span class="stat-label">Schools<br>programmed</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">3</span>
+            <span class="stat-label">Years in<br>STEM education</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">4</span>
+            <span class="stat-label">Languages<br>spoken</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Title block — signature element styled like a CAD drawing title block -->
+      <div class="hero-figure reveal">
+        <div class="photo-slot photo-slot--portrait">
+          <!-- IMAGE PLACEHOLDER: swap with a portrait of Devendhar, ideally on-site at a school/lab. Recommended size 800x1000px. -->
+          <div class="photo-placeholder">
+            <span class="ph-icon">＋</span>
+            <span class="ph-label">Portrait photo</span>
+          </div>
+        </div>
+        <div class="title-block">
+          <div class="tb-row tb-row--head">
+            <span>EXPERION&nbsp;/&nbsp;CREYA&nbsp;FIELD&nbsp;SHEET</span>
+          </div>
+          <div class="tb-row">
+            <span class="tb-k">Drawn by</span><span class="tb-v">D. Bachhu</span>
+          </div>
+          <div class="tb-row">
+            <span class="tb-k">Role</span><span class="tb-v">Education Program Mgr.</span>
+          </div>
+          <div class="tb-row">
+            <span class="tb-k">Base</span><span class="tb-v">Hyderabad, TG</span>
+          </div>
+          <div class="tb-row">
+            <span class="tb-k">Scale</span><span class="tb-v">1 student : 1 idea</span>
+          </div>
+          <div class="tb-row">
+            <span class="tb-k">Rev.</span><span class="tb-v">2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dim-divider" aria-hidden="true"><span></span><em>scroll</em><span></span></div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="section" id="about">
+    <div class="section-inner about-grid">
+      <div class="section-head reveal">
+        <p class="kicker">01 — About</p>
+        <h2>From the workshop floor<br>to the classroom.</h2>
+      </div>
+      <div class="about-body reveal">
+        <p>I started in mechanical engineering — drafting parts in SolidWorks, fabricating frames, designing moulds. Somewhere between a solar-powered farm robot and a wave-energy rig, I realised I liked teaching the build as much as doing it.</p>
+        <p>Today I lead STEM program delivery for <strong>Creya Learning &amp; Research</strong> across more than ten schools, and I'm building <strong>Experion Robotics Academy</strong>, my own venture for lab setup, curriculum and trainer deployment in partner schools — taking the same hands-on, Design-Thinking-first approach I used as a student into the classrooms I now run.</p>
+        <p>I care about programs that are real, repeatable and measured — not one-off demos. Every curriculum I build has a project a student can actually hold at the end of it.</p>
+        <div class="about-tags">
+          <span>Robotics</span><span>IoT</span><span>Design Thinking</span><span>Curriculum Design</span><span>Teacher Training</span><span>Program Evaluation</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section class="section section--alt" id="experience">
+    <div class="section-inner">
+      <div class="section-head reveal">
+        <p class="kicker">02 — Experience</p>
+        <h2>Field record.</h2>
+      </div>
+
+      <ol class="timeline">
+        <li class="timeline-item reveal">
+          <div class="tl-marker"><span>R3</span></div>
+          <div class="tl-content">
+            <div class="tl-top">
+              <h3>Education Program Manager</h3>
+              <span class="tl-date">Aug 2023 — Present</span>
             </div>
+            <p class="tl-org">Creya Learning and Research, Hyderabad</p>
+            <p>Leading STEM program implementation across 10+ schools in Andhra Pradesh and Telangana — training and mentoring educators in Robotics, IoT, Coding and Design Thinking. Manage stakeholder relationships and technically mentor students for hackathons, including the i3R2 Make-a-thon and Junior Make-a-thon at IIT Chennai. Design and deliver hands-on STEM camps for ages 6–15.</p>
+          </div>
+        </li>
 
-            <ul class="nav-links">
-
-                <li><a href="#about">About</a></li>
-
-                <li><a href="#journey">Journey</a></li>
-
-                <li><a href="#projects">Projects</a></li>
-
-                <li><a href="#teaching">Teaching</a></li>
-
-                <li><a href="#gallery">Gallery</a></li>
-
-                <li><a href="#contact">Contact</a></li>
-
-            </ul>
-
-        </nav>
-
-    </header>
-
-    <!-- ===========================
-            HERO
-    ============================ -->
-
-    <main>
-
-        <section class="hero">
-
-            <div class="hero-content">
-
-                <p class="hero-tag">
-
-                    Observe • Design • Make • Impact
-
-                </p>
-
-                <h1>
-
-                    DEVENDHAR
-
-                    <span>BACHHU</span>
-
-                </h1>
-
-                <h2>
-
-                    Designing Meaningful Learning Through Innovation
-
-                </h2>
-
-                <p class="hero-description">
-
-                    IB MYP Design Facilitator, Makerspace Educator,
-                    Industrial Designer and Innovation Mentor helping
-                    learners transform ideas into real-world solutions.
-
-                </p>
-
-                <div class="hero-buttons">
-
-                    <a href="#projects" class="primary-btn">
-
-                        Explore My Journey
-
-                    </a>
-
-                    <a href="#contact" class="secondary-btn">
-
-                        Let's Collaborate
-
-                    </a>
-
-                </div>
-
+        <li class="timeline-item reveal">
+          <div class="tl-marker"><span>R2</span></div>
+          <div class="tl-content">
+            <div class="tl-top">
+              <h3>Design Engineer</h3>
+              <span class="tl-date">Mar — Jul 2023</span>
             </div>
+            <p class="tl-org">Simpliforge Creations, Siddipet</p>
+            <p>Designed architectural structures for concrete 3D printing using SolidWorks and Fusion 360. Designed mechanical components and generated 2D drawings in AutoCAD for developed models.</p>
+          </div>
+        </li>
 
-            <div class="scroll-indicator">
-
-                <span></span>
-
+        <li class="timeline-item reveal">
+          <div class="tl-marker"><span>R1</span></div>
+          <div class="tl-content">
+            <div class="tl-top">
+              <h3>Robotics Mentor Intern</h3>
+              <span class="tl-date">Dec 2022 — Mar 2023</span>
             </div>
-
-        </section>
-
-        <!-- ===========================
-                ABOUT
-        ============================ -->
-
-        <section id="about" class="placeholder">
-
-            <h2>
-
-                Every innovation begins with curiosity.
-
-            </h2>
-
-            <p>
-
-                This section will introduce my philosophy of
-                design thinking, innovation and education.
-
-            </p>
-
-        </section>
-
-        <!-- ===========================
-                JOURNEY
-        ============================ -->
-
-        <section id="journey" class="placeholder">
-
-            <h2>
-
-                From Mechanical Engineering to Makerspaces.
-
-            </h2>
-
-            <p>
-
-                Timeline coming in Sprint 2.
-
-            </p>
-
-        </section>
-
-        <!-- ===========================
-                PROJECTS
-        ============================ -->
-
-        <section id="projects" class="placeholder">
-
-            <h2>
-
-                Featured Case Studies
-
-            </h2>
-
-            <p>
-
-                Every project will tell a story through the
-                Design Cycle.
-
-            </p>
-
-        </section>
-
-        <!-- ===========================
-                TEACHING
-        ============================ -->
-
-        <section id="teaching" class="placeholder">
-
-            <h2>
-
-                Teaching Innovation
-
-            </h2>
-
-            <p>
-
-                IB MYP Design, Robotics,
-                STEM and Makerspace.
-
-            </p>
-
-        </section>
-
-        <!-- ===========================
-                GALLERY
-        ============================ -->
-
-        <section id="gallery" class="placeholder">
-
-            <h2>
-
-                Moments That Matter
-
-            </h2>
-
-            <p>
-
-                Images and videos coming soon.
-
-            </p>
-
-        </section>
-
-        <!-- ===========================
-                CONTACT
-        ============================ -->
-
-        <section id="contact" class="placeholder">
-
-            <h2>
-
-                Let's Build Something Meaningful Together.
-
-            </h2>
-
-            <p>
-
-                Get in touch.
-
-            </p>
-
-        </section>
-
-    </main>
-
-    <!-- ===========================
-            FOOTER
-    ============================ -->
-
-    <footer>
-
-        <p>
-
-            © 2026 Devendhar Bachhu
-
-        </p>
-
-    </footer>
-
-    <script src="js/main.js"></script>
-
+            <p class="tl-org">Evobi Automations Ltd, Bangalore — Atal Tinkering Lab</p>
+            <p>Visited schools to teach students engineering technologies, focused on Robotics and IoT. Built hands-on learning experiences and collaborated with teachers on lesson plans.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section class="section" id="projects">
+    <div class="section-inner">
+      <div class="section-head reveal">
+        <p class="kicker">03 — Projects</p>
+        <h2>Things I've built.</h2>
+      </div>
+
+      <div class="project-grid">
+        <article class="project-card reveal">
+          <div class="photo-slot photo-slot--card">
+            <!-- IMAGE PLACEHOLDER: photo or render of the agriculture robot. Recommended size 800x600px. -->
+            <div class="photo-placeholder">
+              <span class="ph-icon">＋</span>
+              <span class="ph-label">Robot photo</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-eyebrow">B.Tech Capstone · 2023</p>
+            <h3>Solar-Powered Agriculture Robot</h3>
+            <p>An app-controlled robot built to seed-sow, level land, plough and spray pesticide — powered by solar and driven via Arduino &amp; Bluetooth. I led fabrication of the frame and parts.</p>
+            <div class="card-tags"><span>Arduino</span><span>Bluetooth</span><span>Fabrication</span></div>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="photo-slot photo-slot--card">
+            <!-- IMAGE PLACEHOLDER: photo or diagram of the wave energy generator. Recommended size 800x600px. -->
+            <div class="photo-placeholder">
+              <span class="ph-icon">＋</span>
+              <span class="ph-label">Project photo</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-eyebrow">Academic Project · 2022</p>
+            <h3>Wave Energy Power Generator</h3>
+            <p>A system converting the kinetic energy of ocean waves into electricity, built around a wave-energy conversion unit and a power take-off system. I handled design and assembly.</p>
+            <div class="card-tags"><span>Renewable Energy</span><span>Mechanical Design</span></div>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="photo-slot photo-slot--card">
+            <!-- IMAGE PLACEHOLDER: photo of the manufactured mould / mixer coupler. Recommended size 800x600px. -->
+            <div class="photo-placeholder">
+              <span class="ph-icon">＋</span>
+              <span class="ph-label">Project photo</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-eyebrow">Academic Project · 2022</p>
+            <h3>Mould for Mixer Coupler</h3>
+            <p>Designed a mixer-coupler component and its manufacturing mould in Creo, drafted in AutoCAD, then manufactured the mould as team lead — owning the core cavity, ejection system and coupler.</p>
+            <div class="card-tags"><span>Creo</span><span>AutoCAD</span><span>Mould Design</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section class="section section--alt" id="skills">
+    <div class="section-inner">
+      <div class="section-head reveal">
+        <p class="kicker">04 — Skills</p>
+        <h2>Toolkit.</h2>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-col reveal">
+          <h3>Technical</h3>
+          <ul class="skill-list">
+            <li>Robotics &amp; Arduino Controllers</li>
+            <li>Internet of Things</li>
+            <li>3D Printing</li>
+            <li>Microbit</li>
+            <li>App Development — MIT App Inventor, Figma</li>
+          </ul>
+        </div>
+        <div class="skill-col reveal">
+          <h3>Tools</h3>
+          <ul class="skill-list">
+            <li>SolidWorks &amp; Fusion 360</li>
+            <li>AutoCAD &amp; Creo</li>
+            <li>Canva</li>
+            <li>Microsoft Office Suite</li>
+            <li>Google Workspace</li>
+          </ul>
+        </div>
+        <div class="skill-col reveal">
+          <h3>Pedagogy &amp; Program</h3>
+          <ul class="skill-list">
+            <li>Instructional Delivery &amp; Training</li>
+            <li>Design Thinking</li>
+            <li>Teaching Pedagogies</li>
+            <li>Data-Driven Program Evaluation</li>
+            <li>Program Design &amp; Execution</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EDUCATION ============ -->
+  <section class="section" id="education">
+    <div class="section-inner edu-grid">
+      <div class="section-head reveal">
+        <p class="kicker">05 — Education</p>
+        <h2>Credentials.</h2>
+      </div>
+
+      <div class="edu-list reveal">
+        <div class="edu-item">
+          <div class="edu-top">
+            <h3>B.Tech, Mechanical Engineering</h3>
+            <span class="edu-score">76%</span>
+          </div>
+          <p class="edu-org">Marri Laxman Reddy Institute of Technology and Management, Hyderabad</p>
+          <span class="edu-date">2020 — 2023</span>
+        </div>
+        <div class="edu-item">
+          <div class="edu-top">
+            <h3>Diploma, Plastic Mould Technology</h3>
+            <span class="edu-score">77%</span>
+          </div>
+          <p class="edu-org">Central Institute of Plastics Engineering and Technology, Hyderabad</p>
+          <span class="edu-date">2017 — 2020</span>
+        </div>
+        <div class="edu-item">
+          <div class="edu-top">
+            <h3>Secondary Education (10th)</h3>
+            <span class="edu-score">90%</span>
+          </div>
+          <p class="edu-org">ZPHS School, Nighwa — State Board of Secondary Education</p>
+          <span class="edu-date">2017 · Gold medal, highest marks in class</span>
+        </div>
+      </div>
+
+      <div class="edu-extras reveal">
+        <h3>Trainings</h3>
+        <ul class="skill-list">
+          <li>Mechanical CAD Course, CIPET — AutoCAD, Creo, NX, CATIA (Aug 2018 – Jan 2019)</li>
+          <li>Reverse Engineering on a Bicycle, one-week training (Jun 2022)</li>
+        </ul>
+        <h3>Languages</h3>
+        <div class="lang-badges">
+          <span>Telugu</span><span>Hindi</span><span>English</span><span>Marathi</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section section--dark" id="contact">
+    <div class="section-inner contact-inner">
+      <div class="reveal">
+        <p class="kicker kicker--light">06 — Contact</p>
+        <h2 class="contact-title">Let's build something<br>worth teaching.</h2>
+        <p class="contact-sub">Open to conversations on STEM program partnerships, school rollouts, curriculum consulting, and robotics lab setup.</p>
+      </div>
+
+      <div class="contact-card reveal">
+        <a class="contact-row" href="mailto:bdevender67@gmail.com">
+          <span class="contact-k">Email</span>
+          <span class="contact-v">bdevender67@gmail.com</span>
+        </a>
+        <a class="contact-row" href="tel:+919133909867">
+          <span class="contact-k">Phone</span>
+          <span class="contact-v">+91 91339 09867</span>
+        </a>
+        <div class="contact-row">
+          <span class="contact-k">Based in</span>
+          <span class="contact-v">Hyderabad, Telangana</span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-k">Address</span>
+          <span class="contact-v">5-43, Wai, Bhainsa – 504103</span>
+        </div>
+        <a class="btn btn-primary btn-block" href="mailto:bdevender67@gmail.com">Send an email</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>© <span id="year"></span> Devendhar Bachhu</span>
+    <span class="footer-mid">Built from the field, in Hyderabad.</span>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
-
 </html>

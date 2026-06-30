@@ -186,7 +186,7 @@ initDesignCycle();
 const JOURNEY_DATA = {
   shriram: {
     title: 'Makerspace & Design Facilitator — IB MYP Design',
-    badge: 'The Shriram Academy · Jul 2025 — Present',
+    badge: 'The Shriram Academy · Cat 1 · Jul 2025 — Present',
     desc: 'Run the IB MYP Digital & Product Design programme end to end — from curriculum mapping through daily facilitation to assessment.',
     items: [
       'Plan & deliver MYP Design units through the IB Design Cycle',

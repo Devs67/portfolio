@@ -105,7 +105,8 @@ main, .site-header, .site-footer{ position:relative; z-index:1; }
 .main-nav a{ font-size:13.5px; font-weight:500; color:var(--ink); position:relative; padding:4px 0; white-space:nowrap; }
 .main-nav a::after{
   content:''; position:absolute; left:0; right:0; bottom:0; height:1px;
-  background:var(--clay); transform:scaleX(0); transform-origin:left; transition:transform .25s ease;
+  background:var(--clay); transform:scaleX(0); transform-origin:left;
+  transition:transform .35s cubic-bezier(0.16,1,0.3,1);
 }
 .main-nav a:hover::after{ transform:scaleX(1); }
 .main-nav a.is-active{ color:var(--clay-dim); }
@@ -143,6 +144,13 @@ main, .site-header, .site-footer{ position:relative; z-index:1; }
   max-width:var(--maxw); margin:0 auto; padding-inline:32px;
   display:grid; grid-template-columns:1.2fr 0.8fr; gap:60px; align-items:start;
 }
+.hero-name{
+  display:flex; align-items:center; gap:10px; margin:0 0 14px;
+  font-family:var(--font-mono); font-size:13px; font-weight:500;
+  letter-spacing:0.14em; text-transform:uppercase; color:var(--clay-dim);
+}
+.hero-name::before{ content:''; width:22px; height:2px; background:var(--clay); display:inline-block; }
+
 .eyebrow{
   display:flex; align-items:center; gap:10px; font-family:var(--font-mono); font-size:12.5px;
   color:var(--steel); margin-bottom:22px; flex-wrap:wrap;
@@ -154,19 +162,30 @@ main, .site-header, .site-footer{ position:relative; z-index:1; }
 }
 .hero-title em{ font-style:italic; font-weight:300; color:var(--clay-dim); }
 
-.rotator{
-  display:flex; align-items:baseline; gap:10px; margin-top:24px;
-  font-family:var(--font-mono); font-size:14px; color:var(--steel);
+.rotator{ display:flex; flex-direction:column; gap:8px; margin-top:30px; }
+.rotator-label{
+  font-family:var(--font-mono); font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
+  color:var(--steel);
 }
-.rotator-word-wrap{ overflow:hidden; height:1.5em; display:inline-block; }
+.rotator-word-wrap{ overflow:hidden; height:1.25em; display:inline-block; }
 .rotator-word{
   display:inline-block; font-family:var(--font-display); font-style:italic; font-weight:500;
-  font-size:18px; color:var(--clay); transition:opacity .3s ease, transform .3s ease;
+  font-size:clamp(28px,3.4vw,40px); line-height:1.25; color:var(--clay);
+  transition:opacity .4s cubic-bezier(0.16,1,0.3,1), transform .4s cubic-bezier(0.16,1,0.3,1);
 }
-.rotator-word.is-fading{ opacity:0; transform:translateY(6px); }
+.rotator-word.is-fading{ opacity:0; transform:translateY(10px); }
 
 .hero-actions{ display:flex; gap:14px; margin-top:34px; flex-wrap:wrap; }
-.hero-inner--single{ grid-template-columns:1fr; max-width:760px; }
+
+.hero-figure{ display:flex; flex-direction:column; gap:16px; }
+.hero-photo{
+  aspect-ratio:4/5; border:1px solid var(--line); border-radius:var(--radius);
+  background:var(--paper-2);
+}
+.hero-photo-caption{
+  font-family:var(--font-mono); font-size:12px; letter-spacing:0.04em; line-height:1.6;
+  color:var(--steel); text-align:center;
+}
 
 /* ---------- interactive IB MYP Design Cycle ---------- */
 .dc-section{ background:var(--paper-2); }
@@ -194,12 +213,18 @@ main, .site-header, .site-footer{ position:relative; z-index:1; }
 .dc-tabs{ display:flex; flex-direction:column; gap:10px; }
 .dc-tab{
   position:relative; z-index:1;
-  display:flex; align-items:center; gap:16px; width:100%; text-align:left;
-  padding:18px 20px; border-radius:var(--radius); border:1px solid var(--line);
+  display:flex; align-items:center; gap:16px; width:100%; min-height:78px; text-align:left;
+  padding:16px 20px; border-radius:var(--radius); border:1px solid var(--line);
   background:var(--white); cursor:pointer;
   transition:background .35s cubic-bezier(0.16,1,0.3,1), border-color .35s ease, transform .3s cubic-bezier(0.16,1,0.3,1);
   font-family:inherit;
 }
+.dc-tab-tag{
+  display:inline-block; margin-left:8px; padding:2px 7px; border-radius:10px;
+  background:var(--clay); color:var(--white); font-size:9.5px; letter-spacing:0.04em;
+  vertical-align:1px;
+}
+.dc-tab.is-active .dc-tab-tag{ background:var(--white); color:var(--sage); }
 .dc-tab:hover{ transform:translateX(3px); border-color:var(--clay); }
 .dc-tab-badge{
   flex:none; width:36px; height:36px; border-radius:50%; background:var(--paper-2);
@@ -373,6 +398,24 @@ main, .site-header, .site-footer{ position:relative; z-index:1; }
 .philosophy-sub h3{ margin-top:10px; font-size:clamp(24px,2.8vw,30px); }
 .philosophy-sub-note, .dc-sub{ margin-top:12px; }
 
+/* ---------- latest updates ---------- */
+.updates-note{ margin-top:14px; max-width:520px; font-size:15px; color:var(--steel); }
+.updates-grid{ margin-top:44px; display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:22px; }
+.update-card{
+  border:1px solid var(--line); background:var(--white); border-radius:var(--radius);
+  padding:24px; transition:transform .3s cubic-bezier(0.16,1,0.3,1), box-shadow .3s ease;
+}
+.update-card:hover{ transform:translateY(-3px); box-shadow:0 14px 30px rgba(29,34,48,0.07); }
+.update-card--empty{ border-style:dashed; background:transparent; }
+.update-meta{
+  font-family:var(--font-mono); font-size:11px; letter-spacing:0.06em; text-transform:uppercase;
+  color:var(--clay-dim); margin-bottom:10px;
+}
+.update-card h3{ font-size:17px; margin-bottom:8px; }
+.update-card p{ font-size:14px; color:var(--steel); }
+.update-card a{ display:inline-block; margin-top:10px; font-family:var(--font-mono); font-size:13px; color:var(--clay-dim); }
+.update-card a:hover{ color:var(--clay); }
+
 /* ---------- scroll progress indicator ---------- */
 .scroll-progress{
   position:fixed; left:22px; bottom:22px; z-index:60;
@@ -383,12 +426,13 @@ main, .site-header, .site-footer{ position:relative; z-index:1; }
 .sp-fill{
   fill:none; stroke:var(--clay); stroke-width:3; stroke-linecap:round;
   stroke-dasharray:150.8; stroke-dashoffset:150.8;
-  transition:stroke-dashoffset .15s ease;
+  transition:stroke-dashoffset .25s cubic-bezier(0.16,1,0.3,1);
 }
 .sp-icon{
-  position:relative; font-size:14px; color:var(--ink); transition:transform .3s ease, color .3s ease;
+  position:relative; font-size:14px; color:var(--ink);
+  transition:transform .35s cubic-bezier(0.16,1,0.3,1), color .35s ease;
 }
-.scroll-progress.is-complete .sp-icon{ color:var(--clay); }
+.scroll-progress.is-complete .sp-icon{ color:var(--clay); transform:scale(1.2); }
 @media (max-width:720px){
   .scroll-progress{ width:44px; height:44px; left:14px; bottom:14px; }
   .scroll-progress svg{ width:44px; height:44px; }

@@ -9,11 +9,9 @@
 ------------------------------ */
 
 const words = [
-    "OBSERVE.",
-    "DESIGN.",
-    "PROTOTYPE.",
-    "ITERATE.",
-    "IMPACT."
+    "HELLO",
+    "WORLD",
+    "TEST"
 ];
 
 const heroTag = document.querySelector(".hero-tag");

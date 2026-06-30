@@ -1,49 +1,44 @@
-# Devendhar Bachhu — Portfolio
+# Devendhar Bachhu — Portfolio (Project Catalyst v1.0)
 
-A single-page portfolio site built with plain HTML, CSS and JavaScript — no build tools, no frameworks, so it deploys instantly on GitHub Pages.
+A single-page portfolio built with plain HTML, CSS and JavaScript — no build tools, no frameworks — deployable directly via GitHub Pages.
+
+This version follows the "Project Catalyst" content plan: Hero → About Me → My Journey → Design Philosophy → Featured Case Studies → Teaching & Makerspace → Gallery → Certifications → Contact.
 
 ## File structure
 
 ```
 index.html
 css/
-  style.css        → main design system (colors, type, layout, components)
-  responsive.css    → reserved for extra breakpoint overrides (optional — style.css already includes its own @media rules)
+  style.css         → design system (colors, type, layout, components)
+  responsive.css     → breakpoint overrides
 js/
-  main.js           → mobile nav, scroll reveal, footer year
+  main.js            → nav toggle, scroll reveal, hero word rotator, footer year
 documents/
-  Devendhar_Bachhu_Resume.pdf   → linked from the hero "Download résumé" button
+  Devendhar_Bachhu_Resume.pdf
 images/
-  (your photos go here)
+  (your photos go here — currently empty)
 ```
 
-**Important:** all paths in `index.html` are relative to these folders. If you rename or move a file, update its matching `<link>`, `<script>`, `<img>`, or `<a href>` tag in `index.html` to match — a mismatched path is the #1 reason a page loses its styling (it'll fall back to the browser's unstyled default look).
+## Adding the Gallery
 
-## Adding your photos
+The Gallery section (`#gallery` in `index.html`) is intentionally empty for now. To populate it:
+1. Add your images into `images/`.
+2. Uncomment / add a `<div class="gallery-grid">` block inside the gallery section with `<img>` tags pointing to `images/yourfile.jpg`.
+3. The `.gallery-grid` CSS class (already in `css/style.css`) will lay them out in a responsive grid automatically.
 
-Search `index.html` for `IMAGE PLACEHOLDER` comments — there are 4:
-1. Hero portrait
-2. Agriculture robot project photo
-3. Wave energy project photo
-4. Mould / mixer coupler project photo
+## Adding case study photos
 
-To swap one in:
-1. Add your image file into `images/`, e.g. `images/portrait.jpg`.
-2. Find the matching `<div class="photo-slot ...">...</div>` block in `index.html`.
-3. Replace the inner `<div class="photo-placeholder">...</div>` with:
+The three project cards in "Featured Case Studies" currently have no images (per your last request). To add one back:
+1. Add the image to `images/`.
+2. Inside the relevant `<article class="project-card">`, add an image element above `<div class="card-body">`, e.g.:
    ```html
-   <img src="images/portrait.jpg" alt="Devendhar Bachhu at a robotics lab session">
+   <img src="images/agri-robot.jpg" alt="Solar-powered agriculture robot" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px 3px 0 0;">
    ```
 
-## Deploying to GitHub Pages
+## Deploying / updating on GitHub Pages
 
-1. Push this folder structure to your repository's `main` branch (you've already got it set up).
-2. On GitHub: go to **Settings → Pages**, set **Source** to `main` branch, `/ (root)` folder, and save.
-3. Your site will be live in a minute or two at:
-   `https://<your-username>.github.io/<repo-name>/`
+Replace your existing `index.html`, `css/style.css`, `css/responsive.css`, and `js/main.js` with these versions, commit, and push to `main`. If GitHub Pages is already configured (Settings → Pages → `main` / root), it updates automatically within a minute or two.
 
-## Customizing later
+## Roadmap (from the content plan)
 
-- **Colors & fonts** live as CSS variables at the top of `css/style.css` (`:root { ... }`).
-- **Text content** — experience, projects, skills — lives directly in `index.html`, organized by section comments (`<!-- ============ ... ============ -->`).
-- To add Experion Robotics Academy as its own dedicated section (rather than the current mention inside "About"), duplicate the `.project-card` or `.timeline-item` markup as a starting point.
+Future additions noted in the source content doc: an interactive project explorer, an animated timeline, premium scroll animations, full project case-study pages, the photo gallery, and a blog/resources section. The current structure (semantic sections, clear IDs, a single design-token file) is built so each of these can be added incrementally without a redesign.

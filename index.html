@@ -30,7 +30,6 @@
       <a href="#journey">Journey</a>
       <a href="#philosophy">Philosophy</a>
       <a href="#case-studies">Case Studies</a>
-      <a href="#teaching">Teaching</a>
       <a href="#gallery">Gallery</a>
       <a href="#certifications">Certifications</a>
       <a href="#updates">Updates</a>
@@ -68,7 +67,7 @@
 
       <div class="hero-figure reveal">
         <div class="hero-photo">
-          <!-- Portrait photo to be added later: images/portrait.jpg -->
+          <img src="images/portrait.jpg" alt="Devendhar Bachhu" style="width:100%;height:100%;object-fit:cover;border-radius:3px;">
         </div>
         <p class="hero-photo-caption">IB MYP Design Teacher<br>Cat 1 &middot; Makerspace Educator</p>
       </div>
@@ -269,45 +268,11 @@
     </div>
   </section>
 
-  <!-- ============ TEACHING & MAKERSPACE ============ -->
-  <section class="section" id="teaching">
-    <div class="section-inner teach-grid">
-      <div class="section-head reveal">
-        <p class="kicker">05 — Teaching &amp; Makerspace</p>
-        <h2>Where the learning happens.</h2>
-      </div>
-
-      <div class="teach-body reveal">
-        <p>At <strong>The Shriram Academy</strong>, I run the IB MYP Design programme through the full Design Cycle — facilitating Digital &amp; Product Design units, designing criterion-referenced assessments, and leading makerspace sessions that bring Robotics, 3D Design, Coding and Prototyping into one inquiry-based room.</p>
-        <p>I'm also building <strong>Experion Robotics Academy</strong>, my own venture for lab setup, curriculum and trainer deployment in partner schools — the same hands-on, Design-Thinking-first approach, on a second track.</p>
-
-        <div class="teach-list">
-          <div class="teach-item reveal">
-            <h3>Curriculum &amp; Assessment</h3>
-            <p>MYP Design curriculum review and programme mapping across Middle Years grades; formative and summative assessment aligned to MYP Design criteria.</p>
-          </div>
-          <div class="teach-item reveal">
-            <h3>Inquiry-Based Practice</h3>
-            <p>ATL Skills, Learner Profile attributes, Key Concepts, Related Concepts and Global Contexts embedded into daily classroom routines.</p>
-          </div>
-          <div class="teach-item reveal">
-            <h3>Makerspace Facilitation</h3>
-            <p>Robotics, 3D Design, Coding and Prototyping sessions aligned to Design Thinking and interdisciplinary learning goals.</p>
-          </div>
-          <div class="teach-item reveal">
-            <h3>Reflective Documentation</h3>
-            <p>Guiding learners to document and reflect on their design process through structured journals, in collaboration with subject teachers.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ============ GALLERY ============ -->
   <section class="section section--alt" id="gallery">
     <div class="section-inner">
       <div class="section-head reveal">
-        <p class="kicker">06 — Gallery</p>
+        <p class="kicker">05 — Gallery</p>
         <h2>The classroom in motion.</h2>
       </div>
       <p class="gallery-note reveal">Photos from makerspace sessions, student projects and classroom builds — coming soon.</p>
@@ -325,7 +290,7 @@
   <section class="section" id="certifications">
     <div class="section-inner edu-grid">
       <div class="section-head reveal">
-        <p class="kicker">07 — Certifications</p>
+        <p class="kicker">06 — Certifications</p>
         <h2>Credentials &amp; training.</h2>
       </div>
 
@@ -379,25 +344,39 @@
   <section class="section section--alt" id="updates">
     <div class="section-inner">
       <div class="section-head reveal">
-        <p class="kicker">08 — Latest Updates</p>
+        <p class="kicker">07 — Latest Updates</p>
         <h2>Recent activity.</h2>
         <p class="updates-note">A running log of new certifications, workshops, and posts — pulled in by hand for now.</p>
       </div>
 
       <div class="updates-grid reveal">
         <!--
-          UPDATES: add a card per item, newest first. Copy this block:
+          HOW TO ADD A REAL LINKEDIN POST (LinkedIn's official embed, no API/key needed):
+          1. Open the post on linkedin.com, click the "•••" menu on the post, choose "Embed this post".
+          2. LinkedIn gives you an <iframe> snippet — paste it inside an .update-card, e.g.:
+
+          <article class="update-card update-card--embed">
+            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:XXXXXXXXXXXXXXXXXX"
+                    height="570" width="100%" frameborder="0" allowfullscreen
+                    title="Embedded post"></iframe>
+          </article>
+
+          3. The numbers after urn:li:share: come straight from LinkedIn's embed code — don't edit them by hand.
+
+          OR for a certificate / simple text update (no embed available), use this manual card instead:
           <article class="update-card">
-            <p class="update-meta"><i></i>LinkedIn post &middot; Month 2026</p>
+            <p class="update-meta">LinkedIn post &middot; Month 2026</p>
             <h3>Headline of the post or certificate</h3>
             <p>One or two lines describing it.</p>
             <a href="https://www.linkedin.com/in/your-profile/" target="_blank" rel="noopener">View on LinkedIn &rarr;</a>
           </article>
+
+          Add newest first, delete the "Coming soon" card below once you have a real one.
         -->
-        <article class="update-card update-card--empty">
-          <p class="update-meta">Coming soon</p>
-          <h3>Your latest LinkedIn posts and certificates will appear here.</h3>
-          <p>Add a card for each update directly in <code>index.html</code> — see the comment in the source for the exact markup to copy.</p>
+        <article class="update-card update-card--embed">
+          <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7474821598601183232?collapsed=1"
+            height="628" frameborder="0" allowfullscreen
+            title="Embedded post"></iframe>
         </article>
       </div>
 
@@ -409,7 +388,7 @@
   <section class="section section--dark" id="contact">
     <div class="section-inner contact-inner">
       <div class="reveal">
-        <p class="kicker kicker--light">09 — Contact</p>
+        <p class="kicker kicker--light">08 — Contact</p>
         <h2 class="contact-title">Let's build something<br>worth teaching.</h2>
         <p class="contact-sub">Open to conversations on IB MYP Design collaboration, makerspace setup, curriculum consulting, and robotics lab partnerships.</p>
       </div>

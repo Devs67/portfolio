@@ -274,11 +274,11 @@ initCarousel();
 //  2. Add one line to GALLERY_DATA below
 //  3. Commit & push — done.
 const GALLERY_DATA = [
-  { n:1, title:'Makerspace Robotics Session',  tag:'Robotics',  desc:'Update this description — one sentence about what is happening in this photo.' },
-  { n:2, title:'3D Printing Workshop',         tag:'3D Design', desc:'Update this description — one sentence about what is happening in this photo.' },
-  { n:3, title:'IB Design Cycle in Action',    tag:'IB MYP',    desc:'Update this description — one sentence about what is happening in this photo.' },
-  { n:4, title:'Student Project Showcase',     tag:'Projects',  desc:'Update this description — one sentence about what is happening in this photo.' },
-  { n:5, title:'STEM Camp Session',            tag:'STEM',      desc:'Update this description — one sentence about what is happening in this photo.' },
+  { n:1, title:'MYP Design in Action',                  tag:'IB MYP Design',  desc:'Learners working through the IB Design Cycle — inquiry, ideation and iteration happening in a real classroom session.' },
+  { n:2, title:'Design Thinking at the Shriram Academy', tag:'IB MYP Design',  desc:'Students documenting and reflecting on their design process through structured journals — a core part of MYP criterion work.' },
+  { n:3, title:'Autonomous Obstacle-Avoiding Car',       tag:'Robotics',        desc:'An ultrasonic-sensor car that scans 180° for obstacles and reroutes its own path — designed, built and programmed by students.' },
+  { n:4, title:'Summer STEM Camp',                       tag:'Summer Camp',     desc:'A hands-on summer camp for younger learners — first encounters with circuits, coding and basic robotics through play-based making.' },
+  { n:5, title:'WRO 2025 — Aerocity, Hyderabad',        tag:'Competition',     desc:'The rover our team built for the World Robot Olympiad 2025, held at Aerocity Hyderabad — guided from concept to competition floor.' },
   // { n:6, title:'...', tag:'...', desc:'...' },
 ];
 

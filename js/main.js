@@ -361,18 +361,30 @@ function initPullCord() {
   let isDark = localStorage.getItem(STORAGE_KEY) === '1';
   let pulling = false;
 
+  // On mobile, update hint label and sync fixed top to header height
+  function adaptToViewport() {
+    const isMobile = window.innerWidth <= 720;
+    if (hint) hint.textContent = isMobile ? 'theme' : (isDark ? '' : 'pull');
+    if (isMobile) {
+      const header = document.querySelector('.site-header');
+      if (header) cord.style.top = header.offsetHeight + 'px';
+    } else {
+      cord.style.top = '';
+    }
+  }
+
   function applyDark(dark, flicker = false) {
     isDark = dark;
     localStorage.setItem(STORAGE_KEY, dark ? '1' : '0');
     cord.setAttribute('aria-pressed', String(dark));
     cord.classList.toggle('has-pulled', dark);
+    if (hint && window.innerWidth > 720) hint.textContent = dark ? '' : 'pull';
 
     if (flicker && !window.matchMedia('(prefers-reduced-motion:reduce)').matches) {
       document.body.classList.add('is-flickering');
       setTimeout(() => document.body.classList.remove('is-flickering'), 420);
     }
 
-    // Slight delay so flicker plays first on turn-off
     setTimeout(() => {
       document.documentElement.classList.toggle('dark-mode', dark);
     }, flicker ? 140 : 0);
@@ -394,6 +406,9 @@ function initPullCord() {
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pull(); }
   });
 
+  window.addEventListener('resize', adaptToViewport);
+  adaptToViewport();
+
   // Restore saved preference on load
   if (isDark) applyDark(true, false);
 
@@ -404,3 +419,151 @@ function initPullCord() {
   }
 }
 initPullCord();
+
+// ── Audience segmentation ─────────────────────────────────────
+(function initAudience() {
+  const VALID    = ['student', 'educator', 'recruiter', 'all'];
+  const STORE    = 'db-audience';
+  const picker   = document.getElementById('audience-picker');
+  const pill     = document.getElementById('audiencePill');
+  const apLabel  = document.getElementById('apLabel');
+  const apDot    = document.querySelector('.ap-dot');
+  const skipBtn  = document.getElementById('apSkip');
+  if (!picker) return;
+
+  const LABELS = {
+    student:  'Student & Parent',
+    educator: 'Co-Teacher',
+    recruiter:'Recruiter',
+    all:      'All sections',
+  };
+  const DOT_CLASS = {
+    student:  '',
+    educator: 'ap-dot--educator',
+    recruiter:'ap-dot--recruiter',
+    all:      '',
+  };
+
+  // Show/hide sections based on choice
+  function applySections(choice) {
+    document.querySelectorAll('[data-audience]').forEach(sec => {
+      const audiences = sec.dataset.audience.split(' ');
+      const visible   = audiences.includes(choice);
+      sec.classList.toggle('aud-visible', visible);
+      // Re-trigger reveals inside newly shown sections
+      if (visible) {
+        sec.querySelectorAll('.reveal:not(.is-visible)').forEach(el => {
+          // small stagger so they don't all fire at once
+          setTimeout(() => el.classList.add('is-visible'), 80);
+        });
+      }
+    });
+  }
+
+  // Update nav: hide links whose section is not visible
+  function updateNav(choice) {
+    document.querySelectorAll('.main-nav a[href^="#"]').forEach(link => {
+      const id  = link.getAttribute('href').slice(1);
+      const sec = document.getElementById(id);
+      if (!sec || !sec.dataset.audience) { link.style.display = ''; return; }
+      const audiences = sec.dataset.audience.split(' ');
+      link.style.display = audiences.includes(choice) ? '' : 'none';
+    });
+  }
+
+  // Show audience pill in nav
+  function showPill(choice) {
+    if (!pill || !apLabel) return;
+    apLabel.textContent = 'Viewing as: ' + LABELS[choice];
+    if (apDot) {
+      apDot.className = 'ap-dot ' + (DOT_CLASS[choice] || '');
+    }
+    pill.style.display = 'flex';
+  }
+
+  // Commit a choice
+  function setAudience(choice, save = true) {
+    if (!VALID.includes(choice)) choice = 'all';
+    if (save) localStorage.setItem(STORE, choice);
+
+    // Update URL param silently
+    try {
+      const url = new URL(window.location.href);
+      if (choice === 'all') url.searchParams.delete('for');
+      else url.searchParams.set('for', choice);
+      history.replaceState({}, '', url.toString());
+    } catch(_) {}
+
+    // Dismiss picker with a brief fade
+    picker.style.transition = 'opacity 0.4s ease';
+    picker.style.opacity    = '0';
+    setTimeout(() => picker.classList.add('is-dismissed'), 420);
+
+    applySections(choice);
+    updateNav(choice);
+    showPill(choice);
+
+    // Re-run flow line layout since sections may have just appeared
+    setTimeout(() => {
+      document.querySelectorAll('.dc-tabs').forEach(layoutFlowLine);
+      syncPanelHeights();
+    }, 500);
+  }
+
+  // Reset: show picker again, show all sections, clear storage
+  function resetAudience() {
+    localStorage.removeItem(STORE);
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('for');
+      history.replaceState({}, '', url.toString());
+    } catch(_) {}
+
+    // Re-show all sections
+    document.querySelectorAll('[data-audience]').forEach(sec => {
+      sec.classList.add('aud-visible');
+    });
+    document.querySelectorAll('.main-nav a[href^="#"]').forEach(l => l.style.display = '');
+
+    // Re-show picker
+    picker.style.opacity    = '0';
+    picker.classList.remove('is-dismissed');
+    picker.style.transition = 'opacity 0.5s ease';
+    void picker.offsetWidth; // reflow
+    picker.style.opacity    = '1';
+
+    if (pill) pill.style.display = 'none';
+
+    // Scroll to picker smoothly
+    picker.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  // Wire card buttons
+  picker.querySelectorAll('.ap-card[data-choice]').forEach(card => {
+    card.addEventListener('click', () => setAudience(card.dataset.choice));
+  });
+
+  // Skip button → show everything
+  if (skipBtn) skipBtn.addEventListener('click', () => setAudience('all'));
+
+  // Pill reset button
+  if (pill) pill.addEventListener('click', resetAudience);
+
+  // ── On page load: check URL param → localStorage → nothing ──
+  const params   = new URLSearchParams(window.location.search);
+  const urlFor   = params.get('for');
+  const saved    = localStorage.getItem(STORE);
+
+  if (VALID.includes(urlFor)) {
+    setAudience(urlFor, true);       // honour shared link, also save it
+  } else if (VALID.includes(saved)) {
+    setAudience(saved, false);       // restore saved preference silently
+  } else {
+    // No choice yet — show picker, show ALL sections in background
+    // so the page isn't blank if someone scrolls past it
+    document.querySelectorAll('[data-audience]').forEach(sec => {
+      sec.classList.add('aud-visible');
+      sec.style.opacity = '0.35';    // dimmed until a choice is made
+    });
+  }
+})();

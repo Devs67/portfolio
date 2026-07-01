@@ -351,17 +351,96 @@ updateProgress();
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-// ── Pull-cord dark mode toggle ────────────────────────────────
+// ── Pull-cord dark mode — drag to trigger ───────────────────
 function initPullCord() {
-  const cord    = document.getElementById('pullCord');
-  const hint    = document.getElementById('cordHint');
-  if (!cord) return;
+  const cord   = document.getElementById('pullCord');
+  const rope   = cord?.querySelector('.cord-rope');
+  const handle = cord?.querySelector('.cord-handle');
+  const hint   = document.getElementById('cordHint');
+  if (!cord || !rope || !handle) return;
 
-  const STORAGE_KEY = 'db-dark-mode';
-  let isDark = localStorage.getItem(STORAGE_KEY) === '1';
-  let pulling = false;
+  const STORE     = 'db-dark-mode';
+  const THRESHOLD = 55;   // px — must drag this far to trigger
+  const MAX_DRAG  = 95;   // px — visual stretch cap
+  let isDark   = localStorage.getItem(STORE) === '1';
+  let dragging = false;
+  let startY   = 0;
 
-  // On mobile, update hint label and sync fixed top to header height
+  // Touch-action none so drag doesn't scroll the page
+  cord.style.touchAction = 'none';
+
+  function startDrag(y) {
+    if (dragging) return;
+    dragging = true;
+    startY   = y;
+    cord.classList.add('is-dragging');
+    rope.style.transition   = 'none';
+    handle.style.transition = 'none';
+  }
+
+  function moveDrag(y) {
+    if (!dragging) return;
+    const dy      = Math.max(0, y - startY);
+    const clamped = Math.min(dy, MAX_DRAG);
+    // Ease off at max stretch
+    const eased   = clamped * (1 - clamped / (MAX_DRAG * 2.2));
+    rope.style.transform         = `scaleY(${1 + eased / 70})`;
+    rope.style.transformOrigin   = 'top center';
+    handle.style.transform       = `translateY(${eased * 0.72}px)`;
+    const glow = Math.min(clamped / MAX_DRAG, 1);
+    handle.style.boxShadow       = `0 4px ${10 + glow * 22}px rgba(166,90,56,${glow * 0.5})`;
+    // Hint turns clay when close to threshold
+    if (hint) hint.style.color = clamped >= THRESHOLD * 0.7
+      ? 'var(--clay)' : '';
+  }
+
+  function endDrag(y) {
+    if (!dragging) return;
+    dragging = false;
+    cord.classList.remove('is-dragging');
+    const dy = Math.max(0, y - startY);
+    // Spring back
+    rope.style.transition        = '';
+    handle.style.transition      = '';
+    rope.style.transform         = '';
+    handle.style.transform       = '';
+    handle.style.boxShadow       = '';
+    if (hint) hint.style.color   = '';
+    cord.classList.add('is-snapping');
+    setTimeout(() => cord.classList.remove('is-snapping'), 500);
+    if (dy >= THRESHOLD) applyDark(!isDark, true);
+  }
+
+  // Pointer Events — unified mouse + touch, no accidental click
+  cord.addEventListener('pointerdown', e => {
+    e.preventDefault();
+    cord.setPointerCapture(e.pointerId);
+    startDrag(e.clientY);
+  });
+  cord.addEventListener('pointermove', e => moveDrag(e.clientY));
+  cord.addEventListener('pointerup',   e => endDrag(e.clientY));
+  cord.addEventListener('pointercancel', () => {
+    dragging = false;
+    cord.classList.remove('is-dragging');
+    rope.style.transition = handle.style.transition = '';
+    rope.style.transform  = handle.style.transform  = '';
+    handle.style.boxShadow = '';
+  });
+
+  function applyDark(dark, flicker = false) {
+    isDark = dark;
+    localStorage.setItem(STORE, dark ? '1' : '0');
+    cord.setAttribute('aria-pressed', String(dark));
+    cord.classList.toggle('has-pulled', dark);
+    if (hint && window.innerWidth > 720) hint.textContent = dark ? '' : 'pull';
+    if (flicker && !window.matchMedia('(prefers-reduced-motion:reduce)').matches) {
+      document.body.classList.add('is-flickering');
+      setTimeout(() => document.body.classList.remove('is-flickering'), 420);
+    }
+    setTimeout(() => document.documentElement.classList.toggle('dark-mode', dark),
+      flicker ? 140 : 0);
+  }
+
   function adaptToViewport() {
     const isMobile = window.innerWidth <= 720;
     if (hint) hint.textContent = isMobile ? 'theme' : (isDark ? '' : 'pull');
@@ -372,53 +451,121 @@ function initPullCord() {
       cord.style.top = '';
     }
   }
-
-  function applyDark(dark, flicker = false) {
-    isDark = dark;
-    localStorage.setItem(STORAGE_KEY, dark ? '1' : '0');
-    cord.setAttribute('aria-pressed', String(dark));
-    cord.classList.toggle('has-pulled', dark);
-    if (hint && window.innerWidth > 720) hint.textContent = dark ? '' : 'pull';
-
-    if (flicker && !window.matchMedia('(prefers-reduced-motion:reduce)').matches) {
-      document.body.classList.add('is-flickering');
-      setTimeout(() => document.body.classList.remove('is-flickering'), 420);
-    }
-
-    setTimeout(() => {
-      document.documentElement.classList.toggle('dark-mode', dark);
-    }, flicker ? 140 : 0);
-  }
-
-  function pull() {
-    if (pulling) return;
-    pulling = true;
-    cord.classList.add('is-pulling');
-    setTimeout(() => {
-      cord.classList.remove('is-pulling');
-      applyDark(!isDark, true);
-      pulling = false;
-    }, 560);
-  }
-
-  cord.addEventListener('click', pull);
-  cord.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pull(); }
-  });
-
   window.addEventListener('resize', adaptToViewport);
   adaptToViewport();
 
-  // Restore saved preference on load
   if (isDark) applyDark(true, false);
-
-  // Honour system preference if no saved state
-  if (localStorage.getItem(STORAGE_KEY) === null) {
-    const sysDark = window.matchMedia('(prefers-color-scheme:dark)').matches;
-    if (sysDark) applyDark(true, false);
-  }
+  if (localStorage.getItem(STORE) === null
+      && window.matchMedia('(prefers-color-scheme:dark)').matches)
+    applyDark(true, false);
 }
 initPullCord();
+
+// ============================================================
+// PHOTO GALLERY CAROUSEL
+// How to add a photo:
+//   1. Upload compressed photo to images/gallery/
+//      Name it next in sequence: 6.jpg, 7.jpg …
+//   2. Add one entry to GALLERY_DATA below matching the number
+//   3. Commit & push — done.
+// ============================================================
+
+const GALLERY_DATA = [
+  { n:1, title:'Makerspace Robotics Session',   tag:'Robotics',  desc:'Students building and programming their first Arduino-controlled robots — update this description once you know what each photo shows.' },
+  { n:2, title:'3D Printing Workshop',          tag:'3D Design', desc:'Designing and printing custom prototypes in Tinkercad — update this description once you know what each photo shows.' },
+  { n:3, title:'IB Design Cycle in Action',     tag:'IB MYP',    desc:'Grade 7 learners documenting their design process through structured reflective journals — update this description.' },
+  { n:4, title:'Student Project Showcase',      tag:'Projects',  desc:'End-of-unit showcase where students presented finished designs to peers and parents — update this description.' },
+  { n:5, title:'STEM Camp Session',             tag:'STEM',      desc:'Hands-on STEM camp for ages 6–15 across schools in Telangana and Andhra Pradesh — update this description.' },
+  // { n:6, title:'Your title', tag:'Tag', desc:'One sentence description.' },
+];
+
+function initPhotoCarousel() {
+  const mount = document.getElementById('galleryMount');
+  if (!mount) return;
+
+  if (!GALLERY_DATA.length) {
+    mount.innerHTML = `<div class="gallery-empty"><p>Upload photos to <code>images/gallery/</code> and fill <code>GALLERY_DATA</code> in <code>js/main.js</code>.</p></div>`;
+    return;
+  }
+
+  const total = GALLERY_DATA.length;
+  let current   = 0;
+  let autoTimer = null;
+
+  // Build slides
+  mount.innerHTML = `
+    <div class="photo-carousel-wrap">
+      <button class="pc-arrow pc-arrow--prev" id="pcPrev" aria-label="Previous photo">&#8592;</button>
+      <div class="photo-viewport" id="photoViewport">
+        <div class="photo-track" id="photoTrack">
+          ${GALLERY_DATA.map((item, i) => `
+            <div class="photo-slide">
+              <figure class="photo-card">
+                <div class="photo-card-frame">
+                  <img class="photo-card-img"
+                       src="images/gallery/${item.n}.jpg"
+                       alt="${item.title}"
+                       loading="${i === 0 ? 'eager' : 'lazy'}">
+                </div>
+                <figcaption class="photo-card-caption">
+                  <div class="photo-card-top">
+                    <h4 class="photo-card-title">${item.title}</h4>
+                    <span class="photo-card-tag">${item.tag}</span>
+                  </div>
+                  <p class="photo-card-desc">${item.desc}</p>
+                  <span class="photo-card-num">${String(item.n).padStart(2,'0')} / ${String(total).padStart(2,'0')}</span>
+                </figcaption>
+              </figure>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+      <button class="pc-arrow pc-arrow--next" id="pcNext" aria-label="Next photo">&#8594;</button>
+    </div>
+    <div class="photo-dots" id="photoDots">
+      ${GALLERY_DATA.map((_,i) =>
+        `<button class="photo-dot${i===0?' is-active':''}" data-dot="${i}" aria-label="Photo ${i+1}"></button>`
+      ).join('')}
+    </div>
+  `;
+
+  const track  = document.getElementById('photoTrack');
+  const dots   = Array.from(document.querySelectorAll('.photo-dot'));
+
+  function goTo(n, user = false) {
+    current = ((n % total) + total) % total;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((d,i) => d.classList.toggle('is-active', i === current));
+    if (user) resetAuto();
+  }
+
+  function resetAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => goTo(current + 1), 5500);
+  }
+
+  document.getElementById('pcPrev').addEventListener('click', () => goTo(current - 1, true));
+  document.getElementById('pcNext').addEventListener('click', () => goTo(current + 1, true));
+  dots.forEach((btn, i) => btn.addEventListener('click', () => goTo(i, true)));
+
+  // Touch swipe
+  const vp = document.getElementById('photoViewport');
+  let tx = 0;
+  vp.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive:true });
+  vp.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1), true);
+  });
+
+  // Pause on hover
+  const wrap = mount.querySelector('.photo-carousel-wrap');
+  wrap.addEventListener('mouseenter', () => clearInterval(autoTimer));
+  wrap.addEventListener('mouseleave', resetAuto);
+
+  goTo(0);
+  autoTimer = setInterval(() => goTo(current + 1), 5500);
+}
+initPhotoCarousel();
 
 // ── Audience segmentation ─────────────────────────────────────
 (function initAudience() {
@@ -567,3 +714,33 @@ initPullCord();
     });
   }
 })();
+
+// ============================================================
+// Wire lightbox controls
+document.getElementById('lbClose')?.addEventListener('click', closeLightbox);
+document.getElementById('lbPrev') ?.addEventListener('click', lbPrev);
+document.getElementById('lbNext') ?.addEventListener('click', lbNext);
+
+// Click outside image to close
+document.getElementById('lightbox')?.addEventListener('click', e => {
+  if (e.target === document.getElementById('lightbox')) closeLightbox();
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', e => {
+  const lb = document.getElementById('lightbox');
+  if (!lb || lb.style.display === 'none') return;
+  if (e.key === 'Escape')     closeLightbox();
+  if (e.key === 'ArrowLeft')  lbPrev();
+  if (e.key === 'ArrowRight') lbNext();
+});
+
+// Touch swipe in lightbox
+let lbTouchX = 0;
+document.getElementById('lightbox')?.addEventListener('touchstart', e => {
+  lbTouchX = e.touches[0].clientX;
+}, { passive: true });
+document.getElementById('lightbox')?.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - lbTouchX;
+  if (Math.abs(dx) > 40) dx < 0 ? lbNext() : lbPrev();
+});

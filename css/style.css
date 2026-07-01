@@ -1,5 +1,5 @@
 /* ============================================================
-   DEVENDHAR BACHHU — PORTFOLIO
+   DEVENDHAR BACHHU — PORTFOLIO (Project Catalyst v2)
    ============================================================ */
 
 :root{
@@ -255,3 +255,188 @@ main,.site-header,.site-footer{ position:relative; z-index:1; }
 /* Reveal */
 .reveal{ opacity:0; transform:translateY(26px) scale(0.99); transition:opacity .8s var(--ease),transform .8s var(--ease); }
 .reveal.is-visible{ opacity:1; transform:none; }
+
+/* ============================================================
+   DARK MODE — toggled via pull-cord
+   ============================================================ */
+
+:root.dark-mode {
+  --ink:        #E8E4DC;
+  --navy:       #D4CFCA;
+  --steel:      #9AA5AF;
+  --steel-soft: #6B7480;
+  --paper:      #141820;
+  --paper-2:    #1C2230;
+  --line:       #2E3545;
+  --clay:       #C97B50;
+  --clay-dim:   #A86340;
+  --sage:       #3B5C52;
+  --sage-soft:  #7BA99C;
+  --white:      #F2EEE8;
+}
+
+:root.dark-mode body { background:var(--paper); color:var(--ink); }
+:root.dark-mode .site-header { background:rgba(20,24,32,0.92); border-bottom-color:var(--line); }
+:root.dark-mode .project-card,
+:root.dark-mode .dc-panel,
+:root.dark-mode .dc-tab { background:var(--paper-2); }
+:root.dark-mode .dc-tab.is-active { background:var(--sage); }
+:root.dark-mode .li-profile-card,
+:root.dark-mode .update-card { background:var(--paper-2); }
+:root.dark-mode .contact-method { color:var(--ink); }
+:root.dark-mode .li-arrow { background:var(--paper-2); border-color:var(--line); color:var(--ink); }
+:root.dark-mode .li-arrow:hover { background:var(--sage); color:var(--white); }
+:root.dark-mode .nav-cta { border-color:var(--ink); color:var(--ink); }
+:root.dark-mode .nav-cta:hover { background:var(--ink); color:var(--paper); }
+:root.dark-mode .btn-ghost { border-color:var(--ink); color:var(--ink); }
+:root.dark-mode .btn-ghost:hover { background:var(--ink); color:var(--paper); }
+:root.dark-mode .paper-grid { opacity:0.15; }
+
+/* Smooth global transition when dark mode activates */
+body, .site-header, .dc-tab, .dc-panel, .project-card, .li-arrow, .pull-cord, .cord-rope {
+  transition-property: background, background-color, border-color, color, box-shadow;
+  transition-duration: 0.55s;
+  transition-timing-function: cubic-bezier(0.16,1,0.3,1);
+}
+
+/* ============================================================
+   PULL CORD
+   ============================================================ */
+
+.pull-cord {
+  position: absolute;
+  top: 0;
+  right: 80px;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  width: 32px;
+}
+
+/* Two tiny bolts that mount the cord to the ceiling */
+.cord-mount {
+  display: flex;
+  gap: 10px;
+  padding: 6px 8px 4px;
+  background: var(--line);
+  border-radius: 0 0 4px 4px;
+  border-bottom: 2px solid var(--steel-soft);
+}
+.cord-mount-bolt {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--steel);
+  display: block;
+}
+
+/* The rope itself */
+.cord-rope {
+  width: 2px;
+  height: 72px;
+  background: linear-gradient(to bottom, var(--steel-soft), var(--steel));
+  position: relative;
+  transform-origin: top center;
+  transition: transform 0.12s ease;
+}
+.cord-strand {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px, transparent 5px,
+    rgba(255,255,255,0.08) 5px, rgba(255,255,255,0.08) 6px
+  );
+}
+
+/* The pull handle */
+.cord-handle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--steel);
+  background: var(--paper-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.12s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+.cord-handle-line {
+  width: 8px;
+  height: 2px;
+  background: var(--steel);
+  border-radius: 1px;
+  display: block;
+}
+.pull-cord:hover .cord-handle {
+  border-color: var(--clay);
+  background: var(--clay);
+}
+.pull-cord:hover .cord-handle-line {
+  background: var(--white);
+}
+
+/* "pull" hint text */
+.cord-hint {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--steel-soft);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 6px;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+.pull-cord.has-pulled .cord-hint { opacity: 0; }
+
+/* Pull animation */
+@keyframes cord-pull {
+  0%   { transform: scaleY(1) translateY(0); }
+  35%  { transform: scaleY(1.55) translateY(12px); }
+  60%  { transform: scaleY(0.85) translateY(-4px); }
+  80%  { transform: scaleY(1.15) translateY(4px); }
+  100% { transform: scaleY(1) translateY(0); }
+}
+@keyframes handle-pull {
+  0%   { transform: translateY(0); }
+  35%  { transform: translateY(22px); }
+  60%  { transform: translateY(-6px); }
+  80%  { transform: translateY(6px); }
+  100% { transform: translateY(0); }
+}
+
+.pull-cord.is-pulling .cord-rope {
+  animation: cord-pull 0.55s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.pull-cord.is-pulling .cord-handle {
+  animation: handle-pull 0.55s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+
+/* Dark mode state: cord glows faintly */
+:root.dark-mode .cord-handle {
+  background: var(--clay);
+  border-color: var(--clay);
+}
+:root.dark-mode .cord-handle-line { background: var(--white); }
+:root.dark-mode .cord-rope {
+  background: linear-gradient(to bottom, var(--clay-dim), var(--clay));
+}
+
+/* ── page flicker on switch ── */
+@keyframes light-flicker {
+  0%,100% { opacity:1; }
+  15%      { opacity:0.4; }
+  30%      { opacity:0.85; }
+  50%      { opacity:0.3; }
+  70%      { opacity:0.9; }
+}
+body.is-flickering { animation: light-flicker 0.4s ease forwards; }
+
+@media(max-width:720px) {
+  .pull-cord { right: 14px; }
+}

@@ -350,3 +350,57 @@ updateProgress();
 // ── Footer year ───────────────────────────────────────────────
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+// ── Pull-cord dark mode toggle ────────────────────────────────
+function initPullCord() {
+  const cord    = document.getElementById('pullCord');
+  const hint    = document.getElementById('cordHint');
+  if (!cord) return;
+
+  const STORAGE_KEY = 'db-dark-mode';
+  let isDark = localStorage.getItem(STORAGE_KEY) === '1';
+  let pulling = false;
+
+  function applyDark(dark, flicker = false) {
+    isDark = dark;
+    localStorage.setItem(STORAGE_KEY, dark ? '1' : '0');
+    cord.setAttribute('aria-pressed', String(dark));
+    cord.classList.toggle('has-pulled', dark);
+
+    if (flicker && !window.matchMedia('(prefers-reduced-motion:reduce)').matches) {
+      document.body.classList.add('is-flickering');
+      setTimeout(() => document.body.classList.remove('is-flickering'), 420);
+    }
+
+    // Slight delay so flicker plays first on turn-off
+    setTimeout(() => {
+      document.documentElement.classList.toggle('dark-mode', dark);
+    }, flicker ? 140 : 0);
+  }
+
+  function pull() {
+    if (pulling) return;
+    pulling = true;
+    cord.classList.add('is-pulling');
+    setTimeout(() => {
+      cord.classList.remove('is-pulling');
+      applyDark(!isDark, true);
+      pulling = false;
+    }, 560);
+  }
+
+  cord.addEventListener('click', pull);
+  cord.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pull(); }
+  });
+
+  // Restore saved preference on load
+  if (isDark) applyDark(true, false);
+
+  // Honour system preference if no saved state
+  if (localStorage.getItem(STORAGE_KEY) === null) {
+    const sysDark = window.matchMedia('(prefers-color-scheme:dark)').matches;
+    if (sysDark) applyDark(true, false);
+  }
+}
+initPullCord();

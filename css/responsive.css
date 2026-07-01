@@ -28,4 +28,63 @@
   .contact-bg-accent{ display:none; }
   .contact-ctas{ flex-direction:column; }
   .contact-ctas .btn{ text-align:center; }
+
+  /* ── Pull cord: fixed below header, bigger tap area ── */
+  .pull-cord {
+    /* leave the hero, float fixed just below the sticky header */
+    position: fixed;
+    top: 68px;
+    right: 16px;
+    z-index: 45;
+    /* add background pill so it's visible over any section */
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-top: none;
+    border-radius: 0 0 20px 20px;
+    padding: 0 10px 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    transition: background 0.55s var(--ease), border-color 0.55s var(--ease), box-shadow 0.2s ease;
+    width: auto;
+  }
+
+  /* Slightly shorter rope on mobile */
+  .cord-rope { height: 48px; }
+
+  /* Larger handle = easier tap (min 44px touch target via negative margin) */
+  .cord-handle {
+    width: 32px;
+    height: 32px;
+    margin: 0 auto;
+  }
+  .cord-handle-line { width: 10px; }
+
+  /* Replace "pull" with "theme" so the label makes sense on mobile */
+  .cord-hint { font-size: 9px; letter-spacing: 0.06em; }
+
+  /* Invisible expanded tap target overlay */
+  .pull-cord::after {
+    content: '';
+    position: absolute;
+    inset: -10px -14px;
+    z-index: 0;
+  }
+
+  /* Show a subtle pulse on first page load to hint at interactivity */
+  .pull-cord:not(.has-pulled) .cord-handle {
+    animation: cord-mobile-hint 2.4s 1.5s ease-in-out 2 both;
+  }
+  @keyframes cord-mobile-hint {
+    0%,100% { transform:translateY(0); box-shadow:0 2px 8px rgba(0,0,0,0.12); }
+    40%     { transform:translateY(6px); box-shadow:0 6px 18px rgba(166,90,56,0.22); }
+    65%     { transform:translateY(-3px); }
+  }
+}
+
+/* Dark mode on mobile: cord pill adapts */
+@media (max-width:720px) {
+  :root.dark-mode .pull-cord {
+    background: var(--paper-2);
+    border-color: var(--line);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  }
 }

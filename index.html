@@ -35,6 +35,11 @@
       <a href="#contact">Contact</a>
     </nav>
     <a class="nav-cta" href="mailto:bdevender67@gmail.com">Get in touch</a>
+    <button class="audience-pill" id="audiencePill" aria-label="Change view" style="display:none">
+      <span class="ap-dot" id="apDot"></span>
+      <span class="ap-label" id="apLabel">Viewing as: </span>
+      <span class="ap-reset">&#215;</span>
+    </button>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -107,8 +112,42 @@
     </div>
   </section>
 
+  <!-- AUDIENCE PICKER -->
+  <section class="audience-picker" id="audience-picker">
+    <div class="ap-inner">
+      <p class="ap-eyebrow">Before we continue</p>
+      <h2 class="ap-heading">Every great design<br>starts with understanding<br><em>the user.</em></h2>
+      <p class="ap-sub">Tell me who you are and I'll tailor what you see.</p>
+
+      <div class="ap-cards">
+        <button class="ap-card ap-card--student" data-choice="student">
+          <span class="ap-card-icon">&#9998;</span>
+          <span class="ap-card-role">Student &amp; Parent</span>
+          <span class="ap-card-desc">Exploring makerspace, projects, summer camps and learning experiences.</span>
+          <span class="ap-card-arrow">&#8594;</span>
+        </button>
+
+        <button class="ap-card ap-card--educator" data-choice="educator">
+          <span class="ap-card-icon">&#9670;</span>
+          <span class="ap-card-role">Co-Teacher &amp; Educator</span>
+          <span class="ap-card-desc">IB MYP curriculum, design philosophy, resources and collaboration.</span>
+          <span class="ap-card-arrow">&#8594;</span>
+        </button>
+
+        <button class="ap-card ap-card--recruiter" data-choice="recruiter">
+          <span class="ap-card-icon">&#9632;</span>
+          <span class="ap-card-role">Recruiter &amp; School</span>
+          <span class="ap-card-desc">Career record, credentials, skills and what I bring to a programme.</span>
+          <span class="ap-card-arrow">&#8594;</span>
+        </button>
+      </div>
+
+      <button class="ap-skip" id="apSkip">Show me everything &darr;</button>
+    </div>
+  </section>
+
   <!-- MY JOURNEY -->
-  <section class="section section--alt" id="journey">
+  <section class="section section--alt" id="journey" data-audience="educator recruiter all">
     <div class="section-inner">
       <div class="section-head reveal">
         <p class="kicker">02 — My Journey</p>
@@ -155,7 +194,7 @@
   </section>
 
   <!-- DESIGN PHILOSOPHY -->
-  <section class="section" id="philosophy">
+  <section class="section" id="philosophy" data-audience="student educator all">
     <div class="section-inner">
       <div class="section-head reveal">
         <p class="kicker">03 — Design Philosophy</p>
@@ -204,7 +243,7 @@
   </section>
 
   <!-- CASE STUDIES -->
-  <section class="section section--alt" id="case-studies">
+  <section class="section section--alt" id="case-studies" data-audience="student recruiter all">
     <div class="section-inner">
       <div class="section-head reveal">
         <p class="kicker">04 — Featured Case Studies</p>
@@ -240,18 +279,21 @@
   </section>
 
   <!-- GALLERY -->
-  <section class="section" id="gallery">
+  <section class="section" id="gallery" data-audience="student all">
     <div class="section-inner">
       <div class="section-head reveal">
         <p class="kicker">05 — Gallery</p>
         <h2>The classroom in motion.</h2>
+        <p class="gallery-subtitle reveal">Makerspace sessions, student projects and classroom builds.</p>
       </div>
-      <p class="gallery-note reveal">Photos from makerspace sessions, student projects and classroom builds — coming soon.</p>
+
+      <!-- Photo carousel — rendered by js/main.js from GALLERY_DATA -->
+      <div id="galleryMount"><!-- JS inserts carousel here --></div>
     </div>
   </section>
 
   <!-- CERTIFICATIONS -->
-  <section class="section section--alt" id="certifications">
+  <section class="section section--alt" id="certifications" data-audience="educator recruiter all">
     <div class="section-inner edu-grid">
       <div class="section-head reveal">
         <p class="kicker">06 — Certifications</p>
@@ -291,7 +333,7 @@
   </section>
 
   <!-- LATEST UPDATES / LINKEDIN CAROUSEL -->
-  <section class="section" id="updates">
+  <section class="section" id="updates" data-audience="educator recruiter all">
     <div class="section-inner">
       <div class="section-head reveal">
         <p class="kicker">07 — Latest Updates</p>

@@ -342,3 +342,50 @@ body.is-flickering { animation:light-flicker .4s ease forwards; }
   .cord-handle { width:32px; height:32px; }
 }
 :root.dark-mode .pull-cord { background:var(--paper-2); border-color:var(--line); }
+
+/* ── Google Certified Educator badge card ── */
+.cert-badge-item { border-bottom:1px solid var(--line); padding-bottom:26px; }
+.cert-badge-link {
+  display:flex; align-items:center; gap:22px;
+  padding:20px; border-radius:var(--radius);
+  border:1px solid var(--line); background:var(--white);
+  text-decoration:none;
+  transition:border-color .25s ease, box-shadow .25s ease, transform .25s var(--ease);
+}
+.cert-badge-link:hover {
+  border-color:var(--clay);
+  box-shadow:0 8px 28px rgba(166,90,56,.12);
+  transform:translateY(-2px);
+}
+.cert-badge-wrap {
+  flex:none; width:110px; height:110px;
+  border-radius:var(--radius); overflow:hidden;
+  background:var(--paper-2); border:1px solid var(--line);
+  display:flex; align-items:center; justify-content:center;
+}
+.cert-badge-img { width:100%; height:100%; object-fit:contain; display:block; }
+.cert-badge-info { display:flex; flex-direction:column; gap:5px; }
+.cert-badge-issuer {
+  font-family:var(--font-mono); font-size:11px; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--steel);
+}
+.cert-badge-title {
+  font-family:var(--font-display); font-size:20px; font-weight:500;
+  color:var(--ink); margin:0;
+}
+.cert-badge-desc { font-size:13.5px; color:var(--steel); margin:0; line-height:1.5; }
+.cert-badge-verify {
+  font-family:var(--font-mono); font-size:12px; color:var(--clay-dim);
+  margin-top:4px; transition:color .2s;
+}
+.cert-badge-link:hover .cert-badge-verify { color:var(--clay); }
+
+/* Dark mode */
+:root.dark-mode .cert-badge-link { background:var(--paper-2); border-color:var(--line); }
+:root.dark-mode .cert-badge-wrap { background:var(--paper); }
+
+/* Mobile */
+@media (max-width:560px) {
+  .cert-badge-link { flex-direction:column; align-items:flex-start; }
+  .cert-badge-wrap { width:80px; height:80px; }
+}

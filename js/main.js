@@ -372,3 +372,50 @@ updateProgress();
 // ── Footer year ───────────────────────────────────────────────
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+// ── Certificate modal ─────────────────────────────────────────
+(function initCertModal() {
+  const modal    = document.getElementById('certModal');
+  const backdrop = document.getElementById('certModalBackdrop');
+  const closeBtn = document.getElementById('certModalClose');
+  const body     = document.getElementById('certModalBody');
+  const link     = document.getElementById('certModalLink');
+  if (!modal) return;
+
+  function open(contentHtml, href) {
+    body.innerHTML = contentHtml;
+    link.href      = href;
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+  function close() {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+    body.innerHTML = '';
+  }
+
+  // Google Certified Educator — show badge image large
+  document.getElementById('openGoogleCert')?.addEventListener('click', () => {
+    open(
+      `<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/186986143"
+            alt="Google Certified Educator certificate" style="max-width:90%;max-height:70vh;object-fit:contain;display:block;margin:auto;padding:24px;">`,
+      'https://edu.google.accredible.com/3bdd7f44-293e-4185-a8ec-5363ed500b86#acc.gDWCEK32'
+    );
+  });
+
+  // Cat 1 — show Drive PDF preview in iframe
+  document.getElementById('openCat1Cert')?.addEventListener('click', () => {
+    open(
+      `<iframe src="https://drive.google.com/file/d/1lKdmCfK3jOxRQvyKl7qOg6lLk5WhMMPE/preview"
+               title="IB CAT 1 Certificate" allow="autoplay" loading="lazy"></iframe>`,
+      'https://drive.google.com/file/d/1lKdmCfK3jOxRQvyKl7qOg6lLk5WhMMPE/view?usp=sharing'
+    );
+  });
+
+  closeBtn?.addEventListener('click', close);
+  backdrop?.addEventListener('click', close);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.style.display !== 'none') close();
+  });
+})();

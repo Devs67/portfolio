@@ -389,3 +389,326 @@ body.is-flickering { animation:light-flicker .4s ease forwards; }
   .cert-badge-link { flex-direction:column; align-items:flex-start; }
   .cert-badge-wrap { width:80px; height:80px; }
 }
+
+/* ── Cat 1 pill in hero eyebrow ── */
+.cat1-pill {
+  display:inline-flex; align-items:center;
+  margin-left:10px;
+  padding:3px 10px;
+  border-radius:20px;
+  background:var(--clay);
+  color:var(--white);
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:.06em;
+  vertical-align:2px;
+}
+
+/* ── Certifications — group titles ── */
+.cert-group-title {
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--steel);
+  margin:52px 0 20px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.cert-group-title::after {
+  content:'';
+  flex:1;
+  height:1px;
+  background:var(--line);
+}
+
+/* ── Credential cards grid ── */
+.cert-cards-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+.cert-card {
+  display:flex;
+  flex-direction:column;
+  text-align:left;
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;
+  cursor:pointer;
+  font-family:inherit;
+  transition:transform .25s var(--ease), box-shadow .25s ease, border-color .25s ease;
+  padding:0;
+}
+.cert-card:hover {
+  transform:translateY(-4px);
+  box-shadow:0 14px 36px rgba(29,34,48,.1);
+  border-color:var(--clay);
+}
+
+/* Image area */
+.cert-card-img-wrap {
+  width:100%;
+  aspect-ratio:16/9;
+  background:var(--paper-2);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  border-bottom:1px solid var(--line);
+  padding:24px;
+}
+.cert-card-img {
+  width:100%;
+  max-width:200px;
+  height:auto;
+  object-fit:contain;
+  display:block;
+  transition:transform .4s var(--ease);
+}
+.cert-card:hover .cert-card-img { transform:scale(1.04); }
+
+/* IB Cat 1 illustrated placeholder */
+.cert-card-img-wrap--ib {
+  background:linear-gradient(135deg, var(--sage) 0%, #1a2e28 100%);
+  border-bottom-color:var(--sage);
+}
+.cat1-icon {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+}
+.cat1-icon-ib {
+  font-family:var(--font-display);
+  font-size:52px;
+  font-weight:600;
+  color:var(--white);
+  line-height:1;
+  letter-spacing:-2px;
+}
+.cat1-icon-label {
+  font-family:var(--font-mono);
+  font-size:13px;
+  letter-spacing:.2em;
+  color:var(--sage-soft);
+  text-transform:uppercase;
+}
+
+/* Card body */
+.cert-card-body {
+  padding:20px 22px 22px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  flex:1;
+}
+.cert-card-issuer {
+  font-family:var(--font-mono);
+  font-size:10.5px;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  color:var(--steel-soft);
+}
+.cert-card-title {
+  font-family:var(--font-display);
+  font-size:20px;
+  font-weight:500;
+  color:var(--ink);
+  margin:0;
+}
+.cert-card-desc {
+  font-size:13.5px;
+  color:var(--steel);
+  line-height:1.5;
+  margin:0;
+}
+.cert-card-cta {
+  font-family:var(--font-mono);
+  font-size:12px;
+  color:var(--clay-dim);
+  margin-top:8px;
+  transition:color .2s;
+}
+.cert-card:hover .cert-card-cta { color:var(--clay); }
+
+/* ── Education cards ── */
+.edu-cards {
+  display:flex;
+  flex-direction:column;
+  gap:0;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;
+}
+.edu-card {
+  display:flex;
+  align-items:flex-start;
+  gap:0;
+  background:var(--white);
+  border-bottom:1px solid var(--line);
+  transition:background .2s ease;
+}
+.edu-card:last-child { border-bottom:none; }
+.edu-card:hover { background:var(--paper-2); }
+
+.edu-card-year {
+  flex:none;
+  width:90px;
+  padding:22px 16px;
+  font-family:var(--font-mono);
+  font-size:11px;
+  color:var(--clay-dim);
+  letter-spacing:.04em;
+  border-right:1px solid var(--line);
+  background:var(--paper-2);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  line-height:1.4;
+}
+.edu-card-body {
+  flex:1;
+  padding:18px 22px;
+}
+.edu-card-top {
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap;
+}
+.edu-card-top h3 {
+  font-size:16.5px;
+  margin:0;
+  line-height:1.25;
+}
+.edu-card-score {
+  font-family:var(--font-mono);
+  font-size:12px;
+  color:var(--clay-dim);
+  white-space:nowrap;
+}
+.edu-card-org {
+  font-size:13.5px;
+  color:var(--steel);
+  margin:6px 0 0;
+}
+
+/* Gold medal row accent */
+.edu-card--gold .edu-card-year { color:var(--clay); font-weight:500; }
+.edu-card--gold { border-left:3px solid var(--clay); }
+
+/* Languages row */
+.edu-langs { margin-top:36px; }
+.lang-badges { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.lang-badges span { font-family:var(--font-mono); font-size:12px; padding:7px 14px; border:1px solid var(--line); border-radius:var(--radius); color:var(--ink); transition:border-color .2s,background .2s; }
+.lang-badges span:hover { border-color:var(--clay); background:var(--paper-2); }
+
+/* ── Certificate lightbox modal ── */
+.cert-modal {
+  position:fixed;
+  inset:0;
+  z-index:300;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+.cert-modal-backdrop {
+  position:absolute;
+  inset:0;
+  background:rgba(20,24,32,.88);
+  cursor:pointer;
+  animation:lb-in .3s ease;
+}
+.cert-modal-box {
+  position:relative;
+  z-index:1;
+  background:var(--white);
+  border-radius:var(--radius);
+  width:100%;
+  max-width:680px;
+  max-height:90vh;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  animation:modal-up .35s var(--ease);
+  box-shadow:0 32px 80px rgba(0,0,0,.35);
+}
+@keyframes modal-up {
+  from { opacity:0; transform:translateY(20px) scale(.97); }
+  to   { opacity:1; transform:none; }
+}
+.cert-modal-close {
+  position:absolute;
+  top:14px; right:14px;
+  width:34px; height:34px;
+  border-radius:50%;
+  border:none;
+  background:var(--paper-2);
+  font-size:20px;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:2;
+  transition:background .2s;
+}
+.cert-modal-close:hover { background:var(--line); }
+.cert-modal-body {
+  flex:1;
+  overflow:auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:300px;
+  background:var(--paper-2);
+}
+.cert-modal-body img {
+  max-width:100%;
+  max-height:72vh;
+  object-fit:contain;
+  display:block;
+}
+.cert-modal-body iframe {
+  width:100%;
+  height:580px;
+  border:none;
+  display:block;
+}
+.cert-modal-link {
+  display:block;
+  text-align:center;
+  padding:14px;
+  font-family:var(--font-mono);
+  font-size:12.5px;
+  color:var(--clay-dim);
+  border-top:1px solid var(--line);
+  background:var(--white);
+  transition:color .2s,background .2s;
+}
+.cert-modal-link:hover { color:var(--clay); background:var(--paper-2); }
+
+/* Dark mode */
+:root.dark-mode .cert-card     { background:var(--paper-2); border-color:var(--line); }
+:root.dark-mode .edu-card      { background:var(--paper-2); }
+:root.dark-mode .edu-card:hover{ background:var(--paper); }
+:root.dark-mode .edu-card-year { background:var(--paper); }
+:root.dark-mode .cert-modal-box{ background:var(--paper-2); }
+:root.dark-mode .cert-modal-close{ background:var(--paper); }
+
+/* Responsive */
+@media (max-width:720px) {
+  .cert-cards-grid { grid-template-columns:1fr; }
+  .edu-card-year { width:72px; font-size:10px; padding:14px 10px; }
+  .edu-card-body { padding:14px 16px; }
+  .cert-modal-body iframe { height:420px; }
+}
+/* Remove old cert-badge styles (were from previous version) */
+.cert-badge-item, .cert-badge-link, .cert-badge-wrap, .cert-badge-img,
+.cert-badge-info, .cert-badge-issuer, .cert-badge-title,
+.cert-badge-desc, .cert-badge-verify { display:none!important; }

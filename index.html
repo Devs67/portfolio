@@ -64,7 +64,7 @@
     <div class="hero-inner">
       <div class="hero-copy reveal">
         <p class="hero-name">Devendhar Bachhu</p>
-        <p class="eyebrow"><span class="eyebrow-line"></span>IB MYP Design Facilitator &middot; Makerspace Educator</p>
+        <p class="eyebrow"><span class="eyebrow-line"></span>IB MYP Design Facilitator &middot; Makerspace Educator <span class="cat1-pill">Cat 1 &#10003;</span></p>
         <h1 class="hero-title">Designing Meaningful Learning <em>Through Innovation.</em></h1>
 
         <div class="rotator" aria-live="polite">
@@ -253,64 +253,129 @@
 
   <!-- CERTIFICATIONS -->
   <section class="section section--alt" id="certifications">
-    <div class="section-inner edu-grid">
+    <div class="section-inner">
       <div class="section-head reveal">
         <p class="kicker">06 — Certifications</p>
         <h2>Credentials &amp; training.</h2>
       </div>
-      <div class="edu-list reveal">
 
-        <!-- Google Certified Educator Badge -->
-        <div class="edu-item cert-badge-item">
-          <a href="https://edu.google.accredible.com/3bdd7f44-293e-4185-a8ec-5363ed500b86#acc.gDWCEK32"
-             target="_blank" rel="noopener" class="cert-badge-link" aria-label="Verify Google Certified Educator certificate">
-            <div class="cert-badge-wrap">
-              <img
-                src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/186986143"
-                alt="Google Certified Educator badge"
-                class="cert-badge-img"
-                loading="lazy"
-              >
-            </div>
-            <div class="cert-badge-info">
-              <span class="cert-badge-issuer">Google for Education</span>
-              <h3 class="cert-badge-title">Certified Educator</h3>
-              <p class="cert-badge-desc">Verified credential — click to view and confirm authenticity on Accredible.</p>
-              <span class="cert-badge-verify">Verify certificate ↗</span>
-            </div>
-          </a>
-        </div>
+      <!-- ── Professional Credentials Grid ── -->
+      <p class="cert-group-title reveal">Professional Credentials</p>
+      <div class="cert-cards-grid reveal">
 
-        <div class="edu-item">
-          <div class="edu-top"><h3>B.Tech, Mechanical Engineering</h3><span class="edu-score">76%</span></div>
-          <p class="edu-org">Marri Laxman Reddy Institute of Technology and Management, Hyderabad</p>
-          <span class="edu-date">2020 — 2023</span>
-        </div>
-        <div class="edu-item">
-          <div class="edu-top"><h3>Diploma, Plastic Mould Technology</h3><span class="edu-score">77%</span></div>
-          <p class="edu-org">Central Institute of Plastics Engineering and Technology, Hyderabad</p>
-          <span class="edu-date">2017 — 2020</span>
-        </div>
-        <div class="edu-item">
-          <div class="edu-top"><h3>Mechanical CAD Course</h3><span class="edu-score">CIPET</span></div>
-          <p class="edu-org">AutoCAD, Creo, NX, CATIA — Solid &amp; Surface Modelling, Injection Mould Design</p>
-          <span class="edu-date">Aug 2018 — Jan 2019</span>
-        </div>
-        <div class="edu-item">
-          <div class="edu-top"><h3>Reverse Engineering on a Bicycle</h3><span class="edu-score">CIPET</span></div>
-          <p class="edu-org">One-week intensive training</p>
-          <span class="edu-date">Jun 2022</span>
-        </div>
+        <!-- Google Certified Educator -->
+        <button class="cert-card" id="openGoogleCert" aria-label="View Google Certified Educator certificate">
+          <div class="cert-card-img-wrap">
+            <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/186986143"
+                 alt="Google Certified Educator badge" class="cert-card-img" loading="lazy">
+          </div>
+          <div class="cert-card-body">
+            <span class="cert-card-issuer">Google for Education</span>
+            <h3 class="cert-card-title">Certified Educator</h3>
+            <p class="cert-card-desc">Verified digital credential — click to view the full certificate.</p>
+            <span class="cert-card-cta">View &amp; verify ↗</span>
+          </div>
+        </button>
+
+        <!-- IB CAT 1 -->
+        <button class="cert-card" id="openCat1Cert" aria-label="View IB CAT 1 certificate">
+          <div class="cert-card-img-wrap cert-card-img-wrap--ib">
+            <div class="cat1-icon">
+              <span class="cat1-icon-ib">IB</span>
+              <span class="cat1-icon-label">CAT 1</span>
+            </div>
+          </div>
+          <div class="cert-card-body">
+            <span class="cert-card-issuer">IB MYP Design &amp; Makerspace</span>
+            <h3 class="cert-card-title">Category 1 Certified</h3>
+            <p class="cert-card-desc">IB Category 1 workshop certification for MYP Design facilitation and makerspace education.</p>
+            <span class="cert-card-cta">View certificate ↗</span>
+          </div>
+        </button>
+
       </div>
-      <div class="edu-extras reveal">
-        <h3>Recognition</h3>
-        <p class="extras-note">Gold medal, highest marks in 10th class — State Board of Secondary Education (2017).</p>
-        <h3>Languages</h3>
+
+      <!-- ── Education ── -->
+      <p class="cert-group-title reveal">Education</p>
+      <div class="edu-cards reveal">
+
+        <div class="edu-card">
+          <span class="edu-card-year">2020–23</span>
+          <div class="edu-card-body">
+            <div class="edu-card-top">
+              <h3>B.Tech, Mechanical Engineering</h3>
+              <span class="edu-card-score">76%</span>
+            </div>
+            <p class="edu-card-org">Marri Laxman Reddy Institute of Technology and Management, Hyderabad</p>
+          </div>
+        </div>
+
+        <div class="edu-card">
+          <span class="edu-card-year">2017–20</span>
+          <div class="edu-card-body">
+            <div class="edu-card-top">
+              <h3>Diploma, Plastic Mould Technology</h3>
+              <span class="edu-card-score">77%</span>
+            </div>
+            <p class="edu-card-org">Central Institute of Plastics Engineering and Technology, Hyderabad</p>
+          </div>
+        </div>
+
+        <div class="edu-card">
+          <span class="edu-card-year">2018–19</span>
+          <div class="edu-card-body">
+            <div class="edu-card-top">
+              <h3>Mechanical CAD Course</h3>
+              <span class="edu-card-score">CIPET</span>
+            </div>
+            <p class="edu-card-org">AutoCAD, Creo, NX, CATIA — Solid &amp; Surface Modelling, Injection Mould Design</p>
+          </div>
+        </div>
+
+        <div class="edu-card">
+          <span class="edu-card-year">Jun 2022</span>
+          <div class="edu-card-body">
+            <div class="edu-card-top">
+              <h3>Reverse Engineering on a Bicycle</h3>
+              <span class="edu-card-score">CIPET</span>
+            </div>
+            <p class="edu-card-org">One-week intensive hands-on training</p>
+          </div>
+        </div>
+
+        <div class="edu-card edu-card--gold">
+          <span class="edu-card-year">2017</span>
+          <div class="edu-card-body">
+            <div class="edu-card-top">
+              <h3>Secondary Education — 10th</h3>
+              <span class="edu-card-score">90% &#127941;</span>
+            </div>
+            <p class="edu-card-org">ZPHS Nighwa — State Board of Secondary Education &middot; Gold medal, highest marks in class</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── Languages ── -->
+      <div class="edu-langs reveal">
+        <p class="cert-group-title" style="margin-top:0">Languages</p>
         <div class="lang-badges">
           <span>Telugu</span><span>Hindi</span><span>English</span><span>Marathi</span>
         </div>
       </div>
+
     </div>
+
+    <!-- Certificate lightbox modal -->
+    <div class="cert-modal" id="certModal" role="dialog" aria-modal="true" aria-label="Certificate viewer" style="display:none">
+      <div class="cert-modal-backdrop" id="certModalBackdrop"></div>
+      <div class="cert-modal-box">
+        <button class="cert-modal-close" id="certModalClose" aria-label="Close">&times;</button>
+        <div class="cert-modal-body" id="certModalBody"></div>
+        <a class="cert-modal-link" id="certModalLink" href="#" target="_blank" rel="noopener">Open original ↗</a>
+      </div>
+    </div>
+
   </section>
 
   <!-- LATEST UPDATES / LINKEDIN CAROUSEL -->

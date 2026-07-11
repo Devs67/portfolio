@@ -263,8 +263,8 @@
       <p class="cert-group-title reveal">Professional Credentials</p>
       <div class="cert-cards-grid reveal">
 
-        <!-- IB CAT 1 — featured, full-width -->
-        <button class="cert-card cert-card--featured" id="openCat1Cert" aria-label="View IB CAT 1 certificate">
+        <!-- IB CAT 1 — hero credential, full dark background -->
+        <button class="cert-card cert-card--featured cert-card--ib-hero" id="openCat1Cert" aria-label="View IB CAT 1 certificate">
           <div class="cert-card-img-wrap cert-card-img-wrap--ib">
             <div class="cat1-icon">
               <span class="cat1-icon-ib">IB</span>
@@ -272,26 +272,55 @@
               <span class="cat1-icon-check">&#10003; Certified</span>
             </div>
           </div>
-          <div class="cert-card-body">
-            <span class="cert-card-issuer">International Baccalaureate &middot; MYP Design &amp; Makerspace</span>
-            <h3 class="cert-card-title cert-card-title--lg">Category 1 Certified</h3>
-            <p class="cert-card-desc">IB Category 1 workshop certification — qualifying me to plan and facilitate MYP Design units, lead makerspace sessions, and assess student work against IB Design criteria. This is the foundational IB credential for design educators.</p>
-            <span class="cert-card-cta">View certificate ↗</span>
+          <div class="cert-card-body cert-card-body--ib">
+            <span class="cert-card-issuer cert-card-issuer--light">International Baccalaureate &middot; MYP Design &amp; Makerspace</span>
+            <h3 class="cert-card-title cert-card-title--lg cert-card-title--light">Category 1 Certified</h3>
+            <p class="cert-card-desc cert-card-desc--light">IB Category 1 workshop certification — qualifying me to plan and facilitate MYP Design units, lead makerspace sessions, and assess student work against IB Design criteria. The foundational IB credential for design educators.</p>
+            <span class="cert-card-cta cert-card-cta--light">View certificate ↗</span>
           </div>
         </button>
 
-        <!-- Google — compact row -->
-        <button class="cert-card cert-card--compact" id="openGoogleCert" aria-label="View Google Certified Educator certificate">
-          <div class="cert-card-img-wrap cert-card-img-wrap--compact">
-            <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/186986143"
-                 alt="Google Certified Educator badge" class="cert-card-img" loading="lazy">
+        <!-- Mechanical CAD — CIPET, horizontal card -->
+        <button class="cert-card cert-card--featured cert-card--cipet" id="openCipetCert" aria-label="View Mechanical CAD certificate">
+          <div class="cert-card-img-wrap cert-card-img-wrap--cipet">
+            <!-- swap src below once you upload the certificate image -->
+            <div class="cipet-icon">
+              <span class="cipet-icon-label">CAD</span>
+              <span class="cipet-icon-sub">CIPET</span>
+            </div>
           </div>
           <div class="cert-card-body">
-            <span class="cert-card-issuer">Google for Education</span>
-            <h3 class="cert-card-title">Certified Educator</h3>
+            <span class="cert-card-issuer">Central Institute of Plastics Engineering &amp; Technology</span>
+            <h3 class="cert-card-title cert-card-title--lg">Mechanical CAD Course</h3>
+            <p class="cert-card-desc">6-month training covering AutoCAD, Creo, NX and CATIA — solid &amp; surface modelling, injection mould design, and 2D drafting. Aug 2018 – Jan 2019.</p>
+            <!-- add href once you have the certificate link -->
+            <span class="cert-card-cta">Certificate image coming soon</span>
           </div>
-          <span class="cert-card-cta cert-card-cta--inline">Verify ↗</span>
         </button>
+
+        <!-- 2-column row: Google + empty placeholder -->
+        <div class="cert-cards-row">
+
+          <button class="cert-card cert-card--box" id="openGoogleCert" aria-label="View Google Certified Educator certificate">
+            <div class="cert-card-img-wrap cert-card-img-wrap--box">
+              <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/186986143"
+                   alt="Google Certified Educator badge" class="cert-card-img" loading="lazy">
+            </div>
+            <div class="cert-card-body cert-card-body--box">
+              <span class="cert-card-issuer">Google for Education</span>
+              <h3 class="cert-card-title">Certified Educator</h3>
+              <span class="cert-card-cta">View &amp; verify ↗</span>
+            </div>
+          </button>
+
+          <div class="cert-card cert-card--placeholder">
+            <div class="cert-placeholder-inner">
+              <span class="cert-placeholder-plus">+</span>
+              <p class="cert-placeholder-text">More credentials<br>coming soon</p>
+            </div>
+          </div>
+
+        </div>
 
       </div>
 

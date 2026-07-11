@@ -393,6 +393,7 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
     modal.style.display = 'none';
     document.body.style.overflow = '';
     body.innerHTML = '';
+    if (link) link.style.display = '';
   }
 
   // Google Certified Educator — show badge image large
@@ -402,6 +403,21 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
             alt="Google Certified Educator certificate" style="max-width:90%;max-height:70vh;object-fit:contain;display:block;margin:auto;padding:24px;">`,
       'https://edu.google.accredible.com/3bdd7f44-293e-4185-a8ec-5363ed500b86#acc.gDWCEK32'
     );
+  });
+
+  // CIPET Mechanical CAD — placeholder until image/link is added
+  document.getElementById('openCipetCert')?.addEventListener('click', () => {
+    open(
+      `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:48px 32px;min-height:300px;">
+        <div style="font-family:var(--font-mono);font-size:40px;color:#2C3E50;font-weight:500;letter-spacing:.06em;">CAD</div>
+        <p style="font-family:var(--font-mono);font-size:13px;color:var(--steel);text-align:center;line-height:1.6;max-width:320px;">
+          Mechanical CAD Course certificate from CIPET.<br>Certificate image will be uploaded here soon.
+        </p>
+      </div>`,
+      '#'
+    );
+    // hide the "open original" link since there's no link yet
+    document.getElementById('certModalLink').style.display = 'none';
   });
 
   // Cat 1 — show Drive PDF preview in iframe

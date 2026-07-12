@@ -263,50 +263,51 @@
       <p class="cert-group-title reveal">Professional Credentials</p>
       <div class="cert-cards-grid reveal">
 
-        <!-- IB CAT 1 — hero credential, full dark background -->
-        <button class="cert-card cert-card--featured cert-card--ib-hero" id="openCat1Cert" aria-label="View IB CAT 1 certificate">
-          <div class="cert-card-img-wrap cert-card-img-wrap--ib">
-            <div class="cat1-icon">
-              <span class="cat1-icon-ib">IB</span>
-              <span class="cat1-icon-label">Category 1</span>
-              <span class="cat1-icon-check">&#10003; Certified</span>
-            </div>
-          </div>
-          <div class="cert-card-body cert-card-body--ib">
-            <span class="cert-card-issuer cert-card-issuer--light">International Baccalaureate &middot; MYP Design &amp; Makerspace</span>
-            <h3 class="cert-card-title cert-card-title--lg cert-card-title--light">Category 1 Certified</h3>
-            <p class="cert-card-desc cert-card-desc--light">IB Category 1 workshop certification — qualifying me to plan and facilitate MYP Design units, lead makerspace sessions, and assess student work against IB Design criteria. The foundational IB credential for design educators.</p>
-            <span class="cert-card-cta cert-card-cta--light">View certificate ↗</span>
-          </div>
-        </button>
+        <!-- Row 1: IB + Mech CAD — primary, slightly bigger -->
+        <div class="cert-cards-row">
 
-        <!-- Mechanical CAD — CIPET, horizontal card -->
-        <button class="cert-card cert-card--featured cert-card--cipet" id="openCipetCert" aria-label="View Mechanical CAD certificate">
-          <div class="cert-card-img-wrap cert-card-img-wrap--cipet">
-            <!-- swap src below once you upload the certificate image -->
-            <div class="cipet-icon">
-              <span class="cipet-icon-label">CAD</span>
-              <span class="cipet-icon-sub">CIPET</span>
+          <button class="cert-card cert-card--box cert-card--primary" id="openCat1Cert" aria-label="View IB CAT 1 certificate">
+            <div class="cert-card-badge cert-card-badge--ib">
+              <div class="ib-emblem">
+                <span class="ib-emblem-text">IB</span>
+                <span class="ib-emblem-sub">MYP Design</span>
+                <span class="ib-emblem-tag">Cat 1 &#10003;</span>
+              </div>
             </div>
-          </div>
-          <div class="cert-card-body">
-            <span class="cert-card-issuer">Central Institute of Plastics Engineering &amp; Technology</span>
-            <h3 class="cert-card-title cert-card-title--lg">Mechanical CAD Course</h3>
-            <p class="cert-card-desc">6-month training covering AutoCAD, Creo, NX and CATIA — solid &amp; surface modelling, injection mould design, and 2D drafting. Aug 2018 – Jan 2019.</p>
-            <!-- add href once you have the certificate link -->
-            <span class="cert-card-cta">Certificate image coming soon</span>
-          </div>
-        </button>
+            <div class="cert-card-body">
+              <span class="cert-card-issuer">International Baccalaureate</span>
+              <h3 class="cert-card-title">Category 1 Certified</h3>
+              <p class="cert-card-desc">MYP Design facilitation, makerspace education &amp; criterion-referenced assessment.</p>
+              <span class="cert-card-cta">View certificate ↗</span>
+            </div>
+          </button>
 
-        <!-- 2-column row: Google + empty placeholder -->
+          <button class="cert-card cert-card--box cert-card--primary" id="openCipetCert" aria-label="View Mechanical CAD certificate">
+            <div class="cert-card-badge cert-card-badge--cad">
+              <div class="cad-emblem">
+                <span class="cad-emblem-text">CAD</span>
+                <span class="cad-emblem-sub">CIPET</span>
+              </div>
+            </div>
+            <div class="cert-card-body">
+              <span class="cert-card-issuer">Central Institute of Plastics Engineering &amp; Technology</span>
+              <h3 class="cert-card-title">Mechanical CAD Course</h3>
+              <p class="cert-card-desc">AutoCAD, Creo, NX, CATIA — solid &amp; surface modelling, injection mould design.</p>
+              <span class="cert-card-cta">Certificate image coming soon</span>
+            </div>
+          </button>
+
+        </div>
+
+        <!-- Row 2: Google + placeholder — standard size -->
         <div class="cert-cards-row">
 
           <button class="cert-card cert-card--box" id="openGoogleCert" aria-label="View Google Certified Educator certificate">
-            <div class="cert-card-img-wrap cert-card-img-wrap--box">
+            <div class="cert-card-badge cert-card-badge--google">
               <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/186986143"
-                   alt="Google Certified Educator badge" class="cert-card-img" loading="lazy">
+                   alt="Google Certified Educator badge" class="cert-card-badge-img" loading="lazy">
             </div>
-            <div class="cert-card-body cert-card-body--box">
+            <div class="cert-card-body">
               <span class="cert-card-issuer">Google for Education</span>
               <h3 class="cert-card-title">Certified Educator</h3>
               <span class="cert-card-cta">View &amp; verify ↗</span>

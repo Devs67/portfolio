@@ -446,38 +446,32 @@ body.is-flickering { animation:light-flicker .4s ease forwards; }
 }
 /* Primary row (IB + CAD) — taller badge */
 .cert-card--primary .cert-card-badge { aspect-ratio:5/3; }
-/* Standard row (Google + placeholder) */
-.cert-card:not(.cert-card--primary) .cert-card-badge { aspect-ratio:4/3; }
+/* Standard row (Google + placeholder) — shorter, tighter */
+.cert-card:not(.cert-card--primary) .cert-card-badge { aspect-ratio:5/2; }
 
-/* ── IB badge — dark sage background with emblem ── */
+/* ── IB badge — white background so the logo reads cleanly ── */
 .cert-card-badge--ib {
-  background: linear-gradient(160deg, #2E3D38 0%, #1a2a25 50%, #0f1f1a 100%);
-  position:relative;
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
 }
 .cert-card-badge--ib::before {
-  content:'';
-  position:absolute; inset:0;
-  background:radial-gradient(circle at 60% 40%, rgba(166,90,56,.18) 0%, transparent 65%);
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(46,61,56,.05) 0%, transparent 70%);
+  pointer-events: none;
 }
-.ib-emblem {
-  position:relative; z-index:1;
-  display:flex; flex-direction:column; align-items:center; gap:4px;
-}
-.ib-emblem-text {
-  font-family:var(--font-display);
-  font-size:60px; font-weight:600; line-height:1;
-  letter-spacing:-3px; color:var(--white);
-}
-.ib-emblem-sub {
-  font-family:var(--font-mono); font-size:11px;
-  letter-spacing:.22em; text-transform:uppercase;
-  color:rgba(203,214,206,.65);
+/* IB logo image */
+.ib-logo-img {
+  width:auto; max-width:140px; max-height:90px;
+  object-fit:contain; display:block;
 }
 .ib-emblem-tag {
-  margin-top:10px;
   font-family:var(--font-mono); font-size:10px; letter-spacing:.08em;
-  color:var(--clay); background:rgba(166,90,56,.18);
-  border:1px solid rgba(166,90,56,.35);
+  color:var(--sage); background:rgba(46,61,56,.1);
+  border:1px solid rgba(46,61,56,.25);
   padding:3px 10px; border-radius:20px;
 }
 .cert-card--primary:has(.cert-card-badge--ib) { border-color:rgba(46,61,56,.3); }
@@ -527,6 +521,7 @@ body.is-flickering { animation:light-flicker .4s ease forwards; }
 
 /* Dark mode */
 :root.dark-mode .cert-card              { background:var(--paper-2); border-color:var(--line); }
+:root.dark-mode .cert-card-badge--ib   { background:var(--paper-2); }
 :root.dark-mode .cert-card-badge--google{ background:var(--paper); }
 
 /* Responsive */
